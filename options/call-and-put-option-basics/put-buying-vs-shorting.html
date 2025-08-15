@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Put Option vs. Shorting a Stock</title>
+  <link rel="stylesheet" href="/css/options.css" />
+
+   <!-- Meta Description (SEO) -->
+  <meta name="description" content="Financial Pulse: Options: Buying put option or shorting a stock?">
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="Financial Pulse">
+  <meta property="og:description" content="Option education, put option, shorting stocks">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialpulse24.com">
+  <meta property="og:site_name" content="Financial Pulse">
+  <meta property="og:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Financial Pulse">
+  <meta name="twitter:description" content="Option education, put option, shorting stocks">
+  <meta name="twitter:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+
+  <!-- Favicons -->
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-48.png" sizes="48x48" type="image/png">
+  <link rel="apple-touch-icon" href="https://financialpulse24.com/assets/apple-touch-icon-180.png" sizes="180x180">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <nav>
+    <a href="/options/trading-options.html" class="nav-button">Home - Options</a>
+    <a href="/options/call-and-put-option-basics/type-of-options.html" class="nav-button">Previous</a>
+  </nav>
+
+  <section class="vs-section">
+    <h2>Shorting a Stock vs. Buying a Put Option</h2>
+
+    <p>When you short a stock, you borrow shares and sell them, hoping to buy them back later at a lower price. While this can generate profits if the stock falls, your potential loss is <b>unlimited</b> because a stock can theoretically rise forever.</p>
+
+    <p>When you buy a put option, you gain the right (but not the obligation) to sell the stock at the strike price. If the stock drops, you can profit. But if it doesn’t, your maximum loss is limited to the premium you paid — which is far safer than shorting outright.</p>
+
+    <p>Put options are often used as insurance or hedging tools. But that safety comes at a cost — the premium can be expensive, especially in volatile markets.</p>
+  </section>
+
+  <section class="vs-section">
+    <h3>Comparison Table</h3>
+
+    <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Shorting a Stock</th>
+          <th>Buying a Put Option</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Profit When</td>
+          <td>Stock price falls</td>
+          <td>Stock price falls</td>
+        </tr>
+        <tr>
+          <td>Maximum Loss</td>
+          <td>Unlimited</td>
+          <td>Limited to premium paid</td>
+        </tr>
+        <tr>
+          <td>Margin Requirement</td>
+          <td>Yes (can trigger margin call)</td>
+          <td>No (just pay whole premium)</td>
+        </tr>
+        <tr>
+          <td>Expiration</td>
+          <td>No expiration</td>
+          <td>Yes – fixed date</td>
+        </tr>
+        <tr>
+          <td>Risk Level</td>
+          <td>Very High</td>
+          <td>Defined Risk</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p class="highlight-box"><b>Summary:</b> If you want to bet against a stock but keep your downside limited, buying a put option is often the safer route — but you'll need to factor in the cost of the premium and the time limit.</p>
+  </section>
+
+  <section class="vs-section">
+    <h3>Check Your Understanding</h3>
+    <form id="quiz-form-put-vs-short">
+      <p><strong>What is the biggest risk when shorting a stock compared to buying a put?</strong></p>
+      <label><input type="radio" name="put-vs-short-answer" value="a"> You can't make any profit</label><br>
+      <label><input type="radio" name="put-vs-short-answer" value="b"> You can lose more than your initial investment</label><br>
+      <label><input type="radio" name="put-vs-short-answer" value="c"> Your profits are capped at a certain level</label><br>
+      <button type="button" onclick="checkAnswerPutVsShort()" class="nav-button">Submit</button>
+    </form>
+    <div id="feedback-put-vs-short" class="context" style="margin-top:1rem;"></div>
+  </section>
+
+  
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted tiny">© <span id="year"></span> Financial Pulse. All rights reserved.</p>
+    <div class="socials">
+      <a href="/disclaimer.html" class="social">Disclaimer</a>
+      <a href="/legal/terms.html" class="social">Terms</a>
+      <a href="/legal/privacy.html" class="social">Privacy &amp; Cookies</a>
+      <a href="#" class="social" onclick="window.fpCookies?.open();return false;">Manage cookies</a>
+    </div>
+  </div>
+  </footer>
+
+ <script>
+  window.fpCookiesConfig = { policyUrl: '../legal/privacy.html', ttlDays: 180 };
+ </script>
+ <script src="/js/cookies.js"></script>
+
+  <script src="js/darkmode.js"></script>
+  <script src="/js/quiz.js"></script>
+  <script src="/js/year.js" defer></script>
+  <script src="/js/cookies.js"></script>
+</body>
+</html>
+
+
+<script src="/js/darkmode.js"></script>
+<script src="/js/year.js" defer></script>
+</body>
+</html>
+

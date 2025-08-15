@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Call & Put Options</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/css/options.css" />
+  <script>
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
+   <!-- Meta Description (SEO) -->
+  <meta name="description" content="Financial Pulse: Options: Call and put option">
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="Financial Pulse">
+  <meta property="og:description" content="Option education, call, put option">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialpulse24.com">
+  <meta property="og:site_name" content="Financial Pulse">
+  <meta property="og:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Financial Pulse">
+  <meta name="twitter:description" content="Option education, call, put option">
+  <meta name="twitter:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+
+  <!-- Favicons -->
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-48.png" sizes="48x48" type="image/png">
+  <link rel="apple-touch-icon" href="https://financialpulse24.com/assets/apple-touch-icon-180.png" sizes="180x180">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP.svg" type="image/svg+xml">
+</head>
+
+<body>
+
+  <a href="/options/trading-options.html" class="nav-button">Home - Options</a>
+
+  <section class="vs-section">
+    <h2>Types of Options</h2>
+
+    <h3>Call Option</h3>
+    <p>
+      A <strong>call option</strong> gives the buyer the right (but not the obligation) to buy an asset at a specific strike price before expiration. 
+      You might buy a call if you expect the price to go up, allowing you to profit by buying lower and selling higher.
+    </p>
+
+    <p>
+      You may wonder — why not just buy the stock? 
+      <a href="call-vs-stock-buying.html" class="styled-link">[See More]</a>
+    </p>
+
+    <p>
+      Selling a call means you expect the stock to remain flat or fall. You collect a premium from the buyer. 
+      If the stock rises too much, you risk having to sell it at a lower strike price.
+      This strategy is commonly used in a 
+      <a href="../option-strategies/covered-call.html" class="styled-link">[Covered Call]</a>.
+    </p>
+
+    <h3>Put Option</h3>
+    <p>
+      A <strong>put option</strong> gives the buyer the right (but not the obligation) to sell an asset at a specific strike price before expiration. 
+      Buy a put if you expect the asset's price to fall.
+    </p>
+
+    <p>
+      You may ask — why not just short the stock? Good question. 
+      <a href="put-buying-vs-shorting.html" class="styled-link">[Compare Here]</a>
+    </p>
+
+    <p>
+      Selling a put means you think the stock will stay flat or rise. If the price drops, you may be forced to buy the stock at the strike price.
+    </p>
+  </section>
+
+  <section class="vs-section">
+    <h3>Check Your Understanding</h3>
+
+    <form id="quiz-form-type">
+      <p><strong>Which situation best describes buying a call option?</strong></p>
+      <label><input type="radio" name="type-answer" value="a"> You expect the price to fall</label><br>
+      <label><input type="radio" name="type-answer" value="b"> You want to sell the stock at a fixed price</label><br>
+      <label><input type="radio" name="type-answer" value="c"> You want to profit if the stock price rises</label><br>
+      <button type="button" class="nav-button" onclick="checkAnswerType()">Submit</button>
+    </form>
+    <div id="feedback-type" class="context" style="margin-top:1rem;"></div>
+  </section>
+
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted tiny">© <span id="year"></span> Financial Pulse. All rights reserved.</p>
+    <div class="socials">
+      <a href="/disclaimer.html" class="social">Disclaimer</a>
+      <a href="/legal/terms.html" class="social">Terms</a>
+      <a href="/legal/privacy.html" class="social">Privacy &amp; Cookies</a>
+      <a href="#" class="social" onclick="window.fpCookies?.open();return false;">Manage cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.fpCookiesConfig = { policyUrl: '../legal/privacy.html', ttlDays: 180 };
+</script>
+<script src="/js/cookies.js"></script>
+
+<script src="js/darkmode.js"></script>
+<script src="/js/quiz.js"></script>
+<script src="/js/year.js" defer></script>
+<script src="/js/cookies.js"></script>
+</body>
+</html>
+
+

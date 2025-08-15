@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/options.css" />
+  <title>Vertical Options Strategies</title>
+
+   <!-- Meta Description (SEO) -->
+  <meta name="description" content="Financial Pulse: Option strategies - Vertical spreads">
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="Financial Pulse">
+  <meta property="og:description" content="Option education, strategies, vertical spreads, bull call spread, bear put">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialpulse24.com">
+  <meta property="og:site_name" content="Financial Pulse">
+  <meta property="og:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Financial Pulse">
+  <meta name="twitter:description" content="Option education, strategies, vertical strategies, bull call spread, bear put">
+  <meta name="twitter:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+
+  <!-- Favicons -->
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-48.png" sizes="48x48" type="image/png">
+  <link rel="apple-touch-icon" href="https://financialpulse24.com/assets/apple-touch-icon-180.png" sizes="180x180">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <div class="nav-bar">
+    <a href="/options/trading-options.html" class="nav-button">Home - Options</a>
+  </div>
+
+  <main class="site-main" id="vs-main">
+  <h2>Vertical Options Strategies</h2>
+  <p style="max-width:800px; margin: 0 auto 2rem auto;">
+    Vertical spread strategies involve simultaneously buying and selling options of the same underlying asset with the same expiration date but different strike prices. They can be used to limit risk, reduce cost, and generate income depending on market outlook.
+  </p>
+
+  <nav class="vs-nav" aria-label="Vertical Strategies Navigation">
+    <ul>
+      <li><a href="#bull-call">Bull Call Spread</a></li>
+      <li><a href="#bear-put">Bear Put Spread</a></li>
+      <li><a href="#bull-put">Bull Put Spread</a></li>
+      <li><a href="#bear-call">Bear Call Spread</a></li>
+    </ul>
+   </nav>
+  
+
+  <section id="bull-call" class="vs-section" tabindex="-1">
+    <h3>Bull Call Spread</h3>
+    <div class="image-container">
+      <img src="/assets/img/bull-call-spread-payoff.png" alt="Bull-call-spread payoff Diagram" />
+      <p class="caption">Custom payoff diagram of a Bull-call-spread strategy</p>
+    </div>
+
+    <p>This strategy is formed by buying a call option with a strike price of $315 and selling another call with a higher strike price of $325, as shown in the table below.</p>
+    <p>The net cost of the strategy is <strong>$4.50</strong> per share (paid debit), calculated as the premium paid for buying the call ($8.00) minus the premium received from selling the call ($3.50). Based on that, the breakeven price at expiration is <strong>$319.50</strong>, calculated as the strike price of the long call ($315) plus the net debit paid.  
+    The maximum profit is capped at <strong>$5.50</strong> per share, which is the difference between the strike prices ($10.00) minus the net debit paid. Maximum loss equals the net debit paid ($4.50).</p> 
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Strike Price ($)</th>
+            <th>Premium ($)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Buy Call</td>
+            <td>315</td>
+            <td>8.00</td>
+          </tr>
+          <tr>
+            <td>Sell Call</td>
+            <td>325</td>
+            <td>3.50</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Benefits</h4>
+    <ul class="vs-benefits">
+      <li>Limited risk and limited profit potential</li>
+      <li>Lower cost compared to buying a naked call</li>
+      <li>Suitable for moderately bullish outlook</li>
+    </ul>
+
+    <h4>Risks & Limitations</h4>
+    <ul class="vs-risks">
+      <li>Profit capped at the difference between strikes minus net premium</li>
+      <li>Loss limited to net premium paid</li>
+      <li>Requires correct market direction prediction</li>
+    </ul>
+  </section>
+
+  <section id="bear-put" class="vs-section" tabindex="-1">
+    <h3>Bear Put Spread</h3>
+    <div class="image-container">
+      <img src="/assets/img/bear-put-spread-payoff.png" alt="Bear-put-spread payoff Diagram" />
+      <p class="caption">Custom payoff diagram of a Bear-put-spread strategy</p>
+    </div>
+
+    <p>This strategy is formed by buying a put option with a strike price of $325 and selling another put with a lower strike price of $315, as shown in the table below.</p>
+    <p>The net cost of the strategy is <strong>$5.00</strong> per share (paid debit), calculated as the premium paid for buying the put ($12.00) minus the premium received from selling the put ($7.00). Based on that, the breakeven price at expiration is <strong>$320</strong>, calculated as the strike price of the long put ($325) minus the net debit paid.  
+    The maximum profit is capped at <strong>$5.00</strong> per share, which is the difference between the strike prices ($10.00) minus the net debit paid. Maximum loss equals the net debit paid ($5.00).</p> 
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Strike Price ($)</th>
+            <th>Premium ($)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Buy Put</td>
+            <td>325</td>
+            <td>12.00</td>
+          </tr>
+          <tr>
+            <td>Sell Put</td>
+            <td>315</td>
+            <td>7.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Benefits</h4>
+    <ul class="vs-benefits">
+      <li>Limits losses while allowing for profit from bearish moves</li>
+      <li>Lower cost than buying a naked put</li>
+      <li>Good for moderately bearish outlook</li>
+    </ul>
+
+    <h4>Risks & Limitations</h4>
+    <ul class="vs-risks">
+      <li>Profit capped at the difference between strikes minus net premium</li>
+      <li>Loss limited to net premium paid</li>
+      <li>Requires correct market direction prediction</li>
+    </ul>
+  </section>
+
+  <section id="bull-put" class="vs-section" tabindex="-1">
+    <h3>Bull Put Spread</h3>
+    <div class="image-container">
+      <img src="/assets/img/bull-put-spread-payoff.png" alt="Bull-put-spread payoff Diagram" />
+      <p class="caption">Custom payoff diagram of a Bull-put-spread strategy</p>
+    </div>
+
+    <p>This strategy is formed by selling a put option with a strike price of $315 and buying another put with a lower strike price of $305, as shown in the table below.</p>
+    <p>The net cost of the strategy is a credit of <strong>$3.50</strong> per share, calculated as the premium received for selling the $315 put ($7.00) minus the premium paid for buying the $305 put ($3.50). The breakeven price at expiration is <strong>$311.50</strong>, calculated as the short put strike ($315) minus the net credit ($3.50).  
+    The maximum profit is capped at <strong>$3.50</strong> per share, which occurs if the stock stays above $315 at expiration. The maximum loss is $6.50 per share, which is the $10 difference between the strike prices minus the net credit received.</p>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Strike Price ($)</th>
+            <th>Premium ($)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sell Put</td>
+            <td>315</td>
+            <td>7.00</td>
+          </tr>
+          <tr>
+            <td>Buy Put</td>
+            <td>305</td>
+            <td>3.50</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Benefits</h4>
+    <ul class="vs-benefits">
+      <li>Generates income in neutral to bullish markets</li>
+      <li>Limited risk due to purchased put</li>
+      <li>Useful for traders expecting stability or moderate gains</li>
+    </ul>
+
+    <h4>Risks & Limitations</h4>
+    <ul class="vs-risks">
+      <li>Risk of assignment on short put</li>
+      <li>Profit limited to net premium received</li>
+      <li>Needs careful monitoring of position</li>
+    </ul>
+  </section>
+
+  <section id="bear-call" class="vs-section" tabindex="-1">
+    <h3>Bear Call Spread</h3>
+    <div class="image-container">
+      <img src="/assets/img/bear-call-spread-payoff.png" alt="Bear-call-spread payoff Diagram" />
+      <p class="caption">Custom payoff diagram of a Bear-call-spread strategy</p>
+    </div>
+
+    <p>This strategy is formed by selling a call option with a strike price of $325 and buying another call with a higher strike price of $335, as shown in the table below.</p>
+    <p>The net cost of the strategy is a credit of <strong>$2.00</strong> per share, calculated as the premium received for selling the $325 call ($3.50) minus the premium paid for buying the $335 call ($1.50). The breakeven price at expiration is <strong>$327.00</strong>, calculated as the short call strike ($325) plus the net credit ($2.00).  
+    The maximum profit is capped at <strong>$2.00</strong> per share, which occurs if the stock stays below $327 at expiration. The maximum loss is $8.00 per share, which is the $10 difference between the strike prices minus the net credit received.</p>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Strike Price ($)</th>
+            <th>Premium ($)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sell Call</td>
+            <td>325</td>
+            <td>3.50</td>
+          </tr>
+          <tr>
+            <td>Buy Call</td>
+            <td>335</td>
+            <td>1.50</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Benefits</h4>
+    <ul class="vs-benefits">
+      <li>Income generation in neutral to bearish markets</li>
+      <li>Limited risk through bought call</li>
+      <li>Good for bearish or neutral outlook</li>
+    </ul>
+
+    <h4>Risks & Limitations</h4>
+    <ul class="vs-risks">
+      <li>Profit capped at net premium received</li>
+      <li>Risk of loss if price moves above bought call strike</li>
+      <li>Requires close monitoring</li>
+    </ul>
+  </section>
+</main>
+
+   <footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted tiny">© <span id="year"></span> Financial Pulse. All rights reserved.</p>
+    <div class="socials">
+      <a href="/disclaimer.html" class="social">Disclaimer</a>
+      <a href="/legal/terms.html" class="social">Terms</a>
+      <a href="/legal/privacy.html" class="social">Privacy &amp; Cookies</a>
+      <a href="#" class="social" onclick="window.fpCookies?.open();return false;">Manage cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.fpCookiesConfig = { policyUrl: '../legal/privacy.html', ttlDays: 180 };
+</script>
+<script src="/js/cookies.js"></script>
+
+<script src="js/darkmode.js"></script>
+<script src="/js/quiz.js"></script>
+<script src="/js/year.js" defer></script>
+<script src="/js/cookies.js"></script>
+
+</body>
+</html>
+
+
+

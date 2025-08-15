@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buying LEAPS Options</title>
+  <link rel="stylesheet" href="/css/options.css" />
+
+   <!-- Meta Description (SEO) -->
+  <meta name="description" content="Financial Pulse: Option strategies - Buying a leap">
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="Financial Pulse">
+  <meta property="og:description" content="Option education, strategies, leaps">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialpulse24.com">
+  <meta property="og:site_name" content="Financial Pulse">
+  <meta property="og:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Financial Pulse">
+  <meta name="twitter:description" content="Option education, strategies, leaps">
+  <meta name="twitter:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+
+  <!-- Favicons -->
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-48.png" sizes="48x48" type="image/png">
+  <link rel="apple-touch-icon" href="https://financialpulse24.com/assets/apple-touch-icon-180.png" sizes="180x180">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <div>
+    <a href="/options/trading-options.html" class="nav-button">Home - Options</a>
+  </div>
+
+  <section class="vs-section" id="buying-leaps" tabindex="-1">
+    <h2>Buying LEAPS Options</h2>
+    <p style="max-width: 800px; margin: 0 auto 2rem auto;">
+      LEAPS (Long-Term Equity Anticipation Securities) are long-dated options (buying calls) that allow traders to gain extended exposure to an underlying asset with reduced capital outlay and defined risk. The same applies to long-dated puts, used for bearish views, although profit potential is limited in that case.
+    </p>
+
+    <h3>LEAPS Call Strategy</h3>
+
+    <div class="image-container">
+      <img src="/assets/img/leaps-call-payoff.png" alt="LEAPS call payoff diagram" />
+      <p class="caption">Custom payoff diagram of a LEAPS call strategy</p>
+    </div>
+
+    <p>
+      Imagine Stock XYZ is trading at $50 and you expect it to rise significantly over the next two years. Instead of purchasing 100 shares for $5,000, you could buy a LEAPS call option (2-year expiration, $50 strike) for $8 per share. Your total cost would be $800. To break even at expiration, the stock must reach at least $58. If it climbs to $70, the option's intrinsic value would be $20 per share, giving you a profit of $1,200 — excluding any remaining time value or Greek sensitivity.
+    </p>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Action</th>
+            <th>Details</th>
+            <th>Cost</th>
+            <th>Outcome if Stock = $70</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Buy 100 Shares</td>
+            <td>XYZ at $50/share</td>
+            <td>$5,000</td>
+            <td>Profit: $2,000</td>
+          </tr>
+          <tr>
+            <td>Buy 1 LEAPS Call</td>
+            <td>$50 Strike, 2-Year Expiry, Premium = $8</td>
+            <td>$800</td>
+            <td>Intrinsic Value: $2,000 → Profit: $1,200</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Benefits</h4>
+    <ul class="vs-benefits">
+      <li>Lower capital requirement compared to buying shares</li>
+      <li>Leverage: higher percentage returns if the stock moves favorably</li>
+      <li>Defined maximum loss (limited to the premium paid)</li>
+      <li>Ideal for long-term bullish investors</li>
+    </ul>
+
+    <h4>Risks & Limitations</h4>
+    <ul class="vs-risks">
+      <li>Time decay still applies (though slower for LEAPS)</li>
+      <li>No voting rights or dividends as with owning stock</li>
+      <li>Option may expire worthless if stock doesn't rise sufficiently</li>
+    </ul>
+  </section>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted tiny">© <span id="year"></span> Financial Pulse. All rights reserved.</p>
+    <div class="socials">
+      <a href="/disclaimer.html" class="social">Disclaimer</a>
+      <a href="/legal/terms.html" class="social">Terms</a>
+      <a href="/legal/privacy.html" class="social">Privacy &amp; Cookies</a>
+      <a href="#" class="social" onclick="window.fpCookies?.open();return false;">Manage cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.fpCookiesConfig = { policyUrl: '../legal/privacy.html', ttlDays: 180 };
+</script>
+<script src="/js/cookies.js"></script>
+
+<script src="js/darkmode.js"></script>
+<script src="/js/quiz.js"></script>
+<script src="/js/year.js" defer></script>
+<script src="/js/cookies.js"></script>
+</body>
+</html>
+

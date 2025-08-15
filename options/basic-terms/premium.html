@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Premium</title>
+  <link rel="stylesheet" href="/css/options.css" />
+  <!-- Meta Description (SEO) -->
+  <meta name="description" content="Financial Pulse: Options: Basic Terms - Premium price">
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="Financial Pulse">
+  <meta property="og:description" content="Option education, basic terms, Premium price">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialpulse24.com">
+  <meta property="og:site_name" content="Financial Pulse">
+  <meta property="og:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Financial Pulse">
+  <meta name="twitter:description" content="Option education, basic terms, Premium price">
+  <meta name="twitter:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+
+  <!-- Favicons -->
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-48.png" sizes="48x48" type="image/png">
+  <link rel="apple-touch-icon" href="https://financialpulse24.com/assets/apple-touch-icon-180.png" sizes="180x180">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP.svg" type="image/svg+xml">
+
+  <!-- Theme Color for Mobile Browsers -->
+  <meta name="theme-color" content="#121212">
+
+</head>
+<body>
+  <div>
+    <a href="/options/trading-options.html" class="nav-button">Home - Options</a>
+  </div>
+
+  <section class="vs-section">
+    <h2>The Premium</h2>
+    <p>
+      The <b>premium</b> is the price paid to buy an option (call or put), or the amount collected when selling one. It represents the cost for the rights granted by the option contract.
+    </p>
+    <p>
+      One standard options contract represents 100 shares. So, if a call option has a premium of $2, the buyer pays $2 × 100 = $200.
+    </p>
+    <p>
+      The premium is influenced by both <b>intrinsic value</b> (if the option is in-the-money) and <b>extrinsic value</b> (time until expiration, volatility, etc.).
+    </p>
+  </section>
+
+  <section class="vs-section">
+    <h3>Check Your Understanding</h3>
+    <form id="quiz-form-premium">
+      <p><strong>If the premium is $1.50 per contract, how much will you pay to buy one option contract?</strong></p>
+      <label><input type="radio" name="premium-answer" value="a"> $15</label><br>
+      <label><input type="radio" name="premium-answer" value="b"> $1.50</label><br>
+      <label><input type="radio" name="premium-answer" value="c"> $150</label><br>
+      <button type="button" onclick="checkAnswerPremium()" class="nav-button">Submit</button>
+    </form>
+    <div id="feedback-premium" class="context" style="margin-top:1rem;"></div>
+  </section>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted tiny">© <span id="year"></span> Financial Pulse. All rights reserved.</p>
+    <div class="socials">
+      <a href="/disclaimer.html" class="social">Disclaimer</a>
+      <a href="/legal/terms.html" class="social">Terms</a>
+      <a href="/legal/privacy.html" class="social">Privacy &amp; Cookies</a>
+      <a href="#" class="social" onclick="window.fpCookies?.open();return false;">Manage cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.fpCookiesConfig = { policyUrl: '../legal/privacy.html', ttlDays: 180 };
+</script>
+<script src="/js/cookies.js"></script>
+
+<script src="js/darkmode.js"></script>
+<script src="/js/quiz.js"></script>
+<script src="/js/year.js" defer></script>
+<script src="/js/cookies.js"></script>
+</body>
+</html>

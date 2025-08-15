@@ -1,0 +1,400 @@
+/* ========== ROOT VARIABILE ========== */
+:root {
+  /* LIGHT MODE */
+  --color-bg-seashell: #FFF5EE;
+  --color-text-light: #000;
+  --color-link-light: #007bff;
+  --color-link-hover-light: #0056b3;
+  --color-table-header-light: #f0f0f0;
+  --color-caption-light: #666;
+  --color-border-light: #ccc;
+
+  /* DARK MODE */
+  --color-bg-dark: #121212;
+  --color-text-dark: #fff;
+  --color-h2-dark: lightblue;
+  --color-h3-dark: #ffd700;
+  --color-bold-dark: #ffd700;
+  --color-table-header-dark: #333;
+  --color-list-hover-bg-dark: #333;
+  --color-list-hover-text-dark: whitesmoke;
+  --color-svg-fill-dark: lightskyblue;
+  --color-border-dark: #444;
+
+  /* Risk profile colors */
+  --color-risk-low: #4caf50;
+  --color-risk-medium: #ff9800;
+  --color-risk-high: #f44336;
+
+  /* Misc */
+  --transition-fast: 0.3s ease;
+
+  /* Common spacing */
+  --max-width: 800px;
+  --section-padding: 2rem;
+  --section-margin: 2rem auto;
+  --border-radius: 8px;
+}
+
+/* ========== GLOBAL RESET & BASE ========== */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-seashell);
+  color: var(--color-text-light);
+  text-align: center;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+html.dark body {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+
+/* ========== TYPOGRAFIJA ========== */
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--color-text-light);
+}
+h3 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  color: var(--color-text-light);
+}
+html.dark h2 { color: var(--color-h2-dark); }
+html.dark h3 { color: var(--color-h3-dark); }
+
+b { font-weight: bold; }
+html.dark b { color: var(--color-bold-dark); }
+
+/* ========== SEKCIJE & SADRŽAJ ========== */
+section,
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--section-padding);
+  box-sizing: border-box;
+  text-align: center;
+}
+section > div { margin-bottom: 2rem; }
+
+section.vs-section {
+  scroll-margin-top: 8rem;
+  margin: var(--section-margin);
+  padding: 1rem 2rem;
+  background: var(--color-bg-seashell);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 10px #ddd;
+  text-align: left;
+}
+html.dark section.vs-section {
+  background: var(--color-bg-dark);
+  box-shadow: 0 0 10px #222;
+}
+section.vs-section h3 { margin-top: 0; }
+
+/* ========== NAVIGACIJA ========== */
+nav {
+  max-width: var(--max-width);
+  margin: 1rem auto;
+  padding: 0 1rem;
+  font-size: 1rem;
+  line-height: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+nav.vs-nav {
+  position: sticky;
+  top: 0;
+  background-color: var(--color-bg-seashell);
+  padding: 1rem 2rem;
+  border-bottom: 2px solid var(--color-border-light);
+  z-index: 999;
+  text-align: left;
+  max-width: var(--max-width);
+  margin: 0 auto 2rem auto;
+  box-sizing: border-box;
+}
+html.dark nav.vs-nav {
+  background-color: var(--color-bg-dark);
+  border-color: var(--color-border-dark);
+}
+nav.vs-nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style-type: disc;
+  padding-left: 1.2rem;
+  margin-bottom: 1rem;
+}
+nav.vs-nav a,
+nav ul li a {
+  color: var(--color-link-light);
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  display: inline-block;
+}
+html.dark nav.vs-nav a,
+html.dark nav ul li a { color: var(--color-svg-fill-dark); }
+
+nav.vs-nav a:hover,
+nav.vs-nav a:focus,
+body:not(.dark) nav ul li a:hover,
+body:not(.dark) nav ul li a:focus {
+  background-color: rgba(0, 123, 255, 0.1);
+  color: var(--color-link-hover-light);
+  outline: none;
+}
+html.dark nav.vs-nav a:hover,
+html.dark nav.vs-nav a:focus,
+body.dark nav ul li a:hover,
+body.dark nav ul li a:focus {
+  background-color: var(--color-list-hover-bg-dark);
+  color: var(--color-list-hover-text-dark);
+  outline: none;
+}
+
+/* ========== TABELA ========== */
+.vs-section .table-container {
+  overflow-x: auto;
+  width: 100%;
+  margin: 1rem 0;
+}
+.vs-section table {
+  min-width: 600px;
+  width: 100%;
+  border-collapse: collapse;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+thead tr { background-color: var(--color-table-header-light); }
+html.dark thead tr { background-color: var(--color-table-header-dark); }
+th, td {
+  border: 1px solid var(--color-border-light);
+  padding: 0.5rem;
+  text-align: left;
+}
+
+/* ========== LINKOVI I GUMBI ========== */
+.nav-button{
+  display: block;                  /* da radi centriranje s auto marginom */
+  width: max-content;              /* širina = koliko treba za tekst */
+  margin: 20px auto 0;             /* centar (auto lijevo/desno) */
+  padding: 8px 16px;
+  background-color: var(--color-link-light);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background-color var(--transition-fast);
+}
+.nav-button:hover{ background-color: var(--color-link-hover-light); }
+
+
+a.styled-link {
+  color: var(--color-link-light);
+  font-weight: bold;
+  text-decoration: none;
+}
+a.styled-link:hover { text-decoration: underline; }
+
+nav ul li a:hover {
+  transform: scale(1.05);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+/* ========== VIDEO & SLIKE ========== */
+video.responsive-video,
+.responsive-video {
+  width: 100%;
+  height: auto;
+  max-width: 480px;
+  margin: 0 auto;
+  display: block;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border-light);
+}
+.image-container { margin-top: 2rem; text-align: center; }
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--border-radius);
+}
+.caption { font-size: 0.9rem; color: var(--color-caption-light); }
+
+/* ========== QUIZ FEEDBACK ========== */
+.feedback { font-style: italic; font-weight: bold; padding: 0.5rem; border-radius: 6px; margin-top: 1rem; }
+.feedback.correct { color: green; }
+.feedback.incorrect { color: darkred; }
+
+/* ========== TOGGLE DARK MODE GUMB ========== */
+#modeToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+svg { width: 32px; height: 32px; fill: var(--color-svg-fill-dark); }
+
+/* ========== FOOTER (ujednačeno s welcome) ========== */
+.site-footer{
+  position: static; /* nije sticky po defaultu */
+  background: var(--color-card, #111);
+  border-top: 1px solid var(--color-card-border, rgba(255,255,255,.15));
+  color: var(--color-muted, #bbb);
+  font-size: 0.875rem; /* ~14px */
+}
+.site-footer .footer-inner{
+  max-width: 1100px;               /* uskladi po potrebi */
+  margin-inline: auto;
+  padding: 8px 24px;               /* niži footer */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.site-footer p{
+  margin: 0;                       /* fix: ne povećava visinu */
+  line-height: 1.2;
+  padding: 0.7rem;
+}
+.site-footer .socials{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.site-footer .socials .social{
+  text-decoration: none;
+  opacity: .9;
+}
+.site-footer .socials .social:hover{ opacity: 1; }
+
+/* Dark mode footer */
+html.dark .site-footer {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
+  border-top: 1px solid var(--color-border-dark);
+}
+
+/* Footer linkovi bijeli */
+.site-footer a,
+.site-footer .socials .social {
+  color: #fff !important;
+  text-decoration: none;
+}
+.site-footer a:hover,
+.site-footer a:focus {
+  color: #fff;
+  text-decoration: underline;
+  outline: none;
+}
+.site-footer a:visited { color: #fff !important; }
+
+/* ========== RESPONSIVE LISTA ========== */
+.responsive-list {
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-left: 0;
+  margin: 0 auto;
+  list-style: none;
+  gap: 0.75rem 1.25rem;
+  max-width: 100%;
+}
+.responsive-list li a {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.responsive-list li a:hover { transform: scale(1.05); }
+
+.video-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 480px;
+  margin: 0 auto 2rem auto;
+  width: 100%;
+}
+.video-wrapper video {
+  display: block;
+  width: 100%;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border-light);
+}
+.video-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: default;
+  user-select: none;
+}
+.video-wrapper:hover .video-overlay { opacity: 1; }
+
+/* Dark mode adjustments */
+html.dark .video-overlay {
+  background: rgba(255, 255, 255, 0.6);
+  color: black;
+}
+
+/* pozadinski pattern */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: -1;
+  background-image:
+    linear-gradient(45deg, rgba(0,0,0,0.03) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0,0,0,0.03) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(0,0,0,0.03) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(0,0,0,0.03) 75%);
+  background-size: 40px 40px;
+  background-position: 0 0, 0 20px, 20px -20px, -20px 0;
+}
+html.dark body::before {
+  background-image:
+    linear-gradient(45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.03) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.03) 75%);
+}
+
+/* ========== Sticky-to-bottom layout (footer uvijek dolje) ========== */
+html, body { height: 100%; }
+body {
+  min-height: 100svh;        /* ili 100vh */
+  display: flex;
+  flex-direction: column;
+}
+.site-main { flex: 1 0 auto; }
+.site-footer { margin-top: auto; }
+
+
+
+

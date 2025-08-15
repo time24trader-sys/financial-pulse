@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>At-the-Money (ATM)</title>
+  <link rel="stylesheet" href="/css/options.css"/>
+
+  <!-- Meta Description (SEO) -->
+  <meta name="description" content="Financial Pulse: Options: Basic Terms - At the money">
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="Financial Pulse">
+  <meta property="og:description" content="Option education, basic terms, At the money, ATM">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialpulse24.com">
+  <meta property="og:site_name" content="Financial Pulse">
+  <meta property="og:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Financial Pulse">
+  <meta name="twitter:description" content="Option education, basic terms, At the money, ATM">
+  <meta name="twitter:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+
+  <!-- Favicons -->
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-48.png" sizes="48x48" type="image/png">
+  <link rel="apple-touch-icon" href="https://financialpulse24.com/assets/apple-touch-icon-180.png" sizes="180x180">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP.svg" type="image/svg+xml">
+
+  <!-- Theme Color for Mobile Browsers -->
+  <meta name="theme-color" content="#121212">
+
+</head>
+<body>
+  <div>
+    <a href="/options/trading-options.html" class="nav-button">Home - Options</a>
+  </div>
+
+  <section class="vs-section">
+    <h2>At-the-Money (ATM)</h2>
+    <p>
+      An option is considered <b>At-the-Money (ATM)</b> when the underlying asset’s market price is equal to or very close to the option’s strike price.
+    </p>
+    <p>
+      For example, if a stock is trading at $50 and the strike price of the option is also $50, the option is said to be at-the-money.
+    </p>
+    <p>
+      At-the-money options have no intrinsic value — they consist only of extrinsic (time) value. Because of that, they are often used in strategies that depend on time decay or volatility, such as straddles or strangles.
+    </p>
+  </section>
+
+  <section class="vs-section">
+    <h3>Check Your Understanding</h3>
+    <form id="quiz-form-atm">
+      <p><strong>Which of the following best describes an at-the-money (ATM) option?</strong></p>
+      <label><input type="radio" name="atm-answer" value="a"> When the strike price is much higher than the current stock price</label><br>
+      <label><input type="radio" name="atm-answer" value="b"> When the stock price and strike price are nearly the same</label><br>
+      <label><input type="radio" name="atm-answer" value="c"> When the option is close to expiration</label><br>
+      <button type="button" onclick="checkAnswerATM()" class="nav-button">Submit</button>
+    </form>
+    <div id="feedback-atm" class="context" style="margin-top:1rem;"></div>
+  </section>
+
+   <footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted tiny">© <span id="year"></span> Financial Pulse. All rights reserved.</p>
+    <div class="socials">
+      <a href="/disclaimer.html" class="social">Disclaimer</a>
+      <a href="/legal/terms.html" class="social">Terms</a>
+      <a href="/legal/privacy.html" class="social">Privacy &amp; Cookies</a>
+      <a href="#" class="social" onclick="window.fpCookies?.open();return false;">Manage cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.fpCookiesConfig = { policyUrl: '../legal/privacy.html', ttlDays: 180 };
+</script>
+<script src="/js/cookies.js"></script>
+
+<script src="js/darkmode.js"></script>
+<script src="/js/quiz.js"></script>
+<script src="/js/year.js" defer></script>
+<script src="/js/cookies.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Financial Pulse — Terms of Use</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <style>
+    .page{max-width:860px;margin:0 auto;padding:48px 20px}
+    .page h1,.page h2{margin:0 0 16px}
+    .page p,.page li{color:var(--muted,#bbb);line-height:1.6}
+    hr{border:none;border-top:1px solid rgba(255,255,255,.12);margin:28px 0}
+    .back{display:inline-block;margin:18px 0 0;text-decoration:none;color:var(--fg,#fff);opacity:.9}
+    .back:hover{opacity:1}
+    .muted{opacity:.9}
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- EN -->
+  <h1>Terms of Use</h1>
+  <p><strong>Last updated:</strong> 2025-08-13</p>
+
+  <h2>1. Who we are</h2>
+  <p>Financial Pulse (individual project), Croatia. Contact: <a href="mailto:time24trader@gmail.com">time24trader@gmail.com</a>.</p>
+
+  <h2>2. No advice / no reliance</h2>
+  <p>The content on this site is for educational purposes only. It does not constitute financial, investment, tax, accounting or legal advice and should not be relied upon as a personal recommendation.</p>
+
+  <h2>3. Use of the site</h2>
+  <ul>
+    <li>Only for users aged 18+.</li>
+    <li>You must not copy, scrape, or redistribute content without prior permission.</li>
+    <li>We may change, update, or remove content at any time without notice.</li>
+  </ul>
+
+  <h2>4. Intellectual property</h2>
+  <p>All materials are owned by us or our licensors. You are granted a limited, revocable, non-transferable licence to view the site for personal use only.</p>
+
+  <h2>5. Disclaimers &amp; limitation of liability</h2>
+  <p>Information is provided “as is” without warranties of any kind. To the maximum extent permitted by law, we are not liable for any loss or damage arising from use of the site or reliance on its content.</p>
+
+  <h2>6. Third-party links &amp; affiliates</h2>
+  <p>We may include links to third-party websites or affiliate links. We are not responsible for the content or practices of external sites. Any material connection will be disclosed where applicable.</p>
+
+  <h2>7. Governing law &amp; venue</h2>
+  <p>These Terms are governed by the laws of the Republic of Croatia, and any disputes shall be subject to the jurisdiction of Croatian courts.</p>
+
+  <h2>8. Changes</h2>
+  <p>We may update these Terms from time to time. Continued use of the site after updates constitutes acceptance of the revised Terms.</p>
+
+  <hr />
+
+  <!-- HR -->
+  <section lang="hr" aria-labelledby="tos-hr-title">
+    <h2 id="tos-hr-title">Uvjeti korištenja</h2>
+    <p><strong>Zadnje ažuriranje:</strong> 2025-08-13</p>
+
+    <h3>1. Tko smo</h3>
+    <p>Financial Pulse (osobni projekt), Hrvatska. Kontakt: <a href="mailto:time24trader@gmail.com">time24trader@gmail.com</a>.</p>
+
+    <h3>2. Nema savjeta / nema oslanjanja</h3>
+    <p>Sadržaj na ovoj stranici namijenjen je isključivo u obrazovne svrhe. Ne predstavlja financijski, investicijski, porezni, računovodstveni ni pravni savjet te se ne smije smatrati osobnom preporukom.</p>
+
+    <h3>3. Korištenje stranice</h3>
+    <ul>
+      <li>Samo za osobe starije od 18 godina.</li>
+      <li>Zabranjeno je kopiranje, scraping ili redistribucija bez prethodnog dopuštenja.</li>
+      <li>Sadržaj se može mijenjati, ažurirati ili ukloniti u bilo kojem trenutku bez najave.</li>
+    </ul>
+
+    <h3>4. Intelektualno vlasništvo</h3>
+    <p>Sav materijal na stranici naše je vlasništvo ili vlasništvo naših davatelja licence. Odobrava se ograničena, opoziva i neprenosiva licenca za osobno pregledavanje sadržaja.</p>
+
+    <h3>5. Odricanja i ograničenje odgovornosti</h3>
+    <p>Informacije se pružaju “kakve jesu”, bez ikakvih jamstava. U najvećoj mjeri dopuštenoj zakonom, ne odgovaramo za bilo kakvu štetu ili gubitak nastao korištenjem stranice ili oslanjanjem na sadržaj.</p>
+
+    <h3>6. Vanjske poveznice i affiliate</h3>
+    <p>Moguće su poveznice na web stranice trećih strana ili affiliate linkovi. Ne odgovaramo za sadržaj ni prakse tih stranica. Svaka materijalna povezanost bit će objavljena kada je primjenjivo.</p>
+
+    <h3>7. Mjerodavno pravo i nadležnost</h3>
+    <p>Ove Uvjete uređuje pravo Republike Hrvatske, a za sve sporove nadležni su hrvatski sudovi.</p>
+
+    <h3>8. Izmjene</h3>
+    <p>Uvjete možemo povremeno ažurirati. Nastavkom korištenja stranice nakon izmjena prihvaćate nove Uvjete.</p>
+  </section>
+
+  <a class="back" href="/index.html">← Back to Financial Pulse</a>
+</div>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted tiny">© <span id="year"></span> Financial Pulse. All rights reserved.</p>
+    <div class="socials">
+      <a href="/disclaimer.html" class="social">Disclaimer</a>
+      <a href="/legal/terms.html" class="social" aria-current="page">Terms</a>
+      <a href="/legal/privacy.html" class="social">Privacy &amp; Cookies</a>
+      <a href="#" class="social" onclick="window.fpCookies?.open();return false;">Manage cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Fallback: set footer year if not already handled globally
+  (function(){
+    const y = document.getElementById('year');
+    if (y && !y.textContent.trim()) {
+      const yr = new Date().getFullYear();
+      y.setAttribute('datetime', String(yr));
+      y.textContent = String(yr);
+    }
+  })();
+</script>
+<script src="/js/cookies.js"></script>
+</body>
+</html>
+

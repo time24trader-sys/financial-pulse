@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="/index.html">
+  <noscript><meta http-equiv="refresh" content="0;url=/index.html"></noscript>
+
+
+<meta charset="utf-8" />
+<title>Financial Pulse Website</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root { --bg:#121212; --fg:#fff; --accent:#39d98a; }
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    min-height:100dvh;
+    display:flex; flex-direction:column; align-items:center;
+    gap:min(3vh,24px);
+    padding-top:72px;
+    padding-bottom:max(8px, env(safe-area-inset-bottom));
+    padding-left:max(8px, env(safe-area-inset-left));
+    padding-right:max(8px, env(safe-area-inset-right));
+    overflow-x:hidden; overflow-y:auto; touch-action:pan-y;
+  }
+
+  /* Naslov iznad grafa */
+  .title-wrap{ width:min(94vw,1100px); text-align:center; }
+  .title-wrap h1{
+    margin:0;
+    font-size:clamp(1.4rem,3vw,2.2rem);
+    font-weight:700; text-transform:uppercase; color:var(--accent);
+    animation:pulse 2s infinite;
+    text-shadow:0 0 10px rgba(57,217,138,0.8);
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+
+  /* Graf kontejner */
+  .chart-wrap{
+    position:relative;
+    width:min(94vw,1100px);
+    aspect-ratio:2/1;
+    border-radius:12px; overflow:hidden;
+  }
+  #spyChart{ width:100%; height:100%; display:block; background:transparent; }
+  #labelLayer{ position:absolute; inset:0; pointer-events:none; }
+
+  /* Portret fix: ne reži dno */
+  @media (orientation:portrait){
+    .chart-wrap{ height:min(54dvh,520px); aspect-ratio:auto; }
+  }
+
+  /* Skip izvan grafa (fixed) */
+  #skipBtn{
+    position:fixed; top:16px; right:16px; z-index:100;
+    background:rgba(255,255,255,.08); color:#fff;
+    border:1px solid rgba(255,255,255,.25);
+    padding:8px 14px; border-radius:8px; cursor:pointer;
+  }
+  #skipBtn:hover{ background:rgba(255,255,255,.18); }
+
+  /* Labele događaja */
+  .event-label{
+    position:absolute;
+    font-size:clamp(10px,1.1vw,14px);
+    line-height:1.2;
+    opacity:0; transform:translateY(10px);
+    transition:opacity .45s ease, transform .45s ease;
+    white-space:nowrap; text-shadow:0 1px 2px rgba(0,0,0,.6);
+    color:#fff;
+  }
+  .event-label.show{ opacity:1; transform:translateY(0); }
+
+  /* Fade (za izlaz) */
+  #fade{ position:fixed; inset:0; background:#000; opacity:0; pointer-events:none; transition:opacity .35s ease; z-index:50; }
+  #fade.show{ opacity:1; pointer-events:auto; }
+</style>
+</head>
+<body>
+
+<button id="skipBtn" type="button">Skip</button>
+
+<div class="title-wrap"><h1>Financial Pulse</h1></div>
+
+<div class="chart-wrap">
+  <canvas id="spyChart"></canvas>
+  <div id="labelLayer"></div>
+</div>
+
+<div id="fade" aria-hidden="true"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script>
+/* ===== Preklopke ===== */
+const SHOW_EVENTS_PROGRESSIVE = true;     // false = sve labele odmah (fiksno + fade)
+const ANIM_DURATION_MS = 8000;
+const AUTO_REDIRECT = true;               // true = automatski redirect na kraju animacije
+const REDIRECT_URL = 'index.html';      // kamo prebaciti
+const REDIRECT_DELAY_MS = 500;            // trajanje fade-a prije redirecta
+const PLAY_ONCE_PER_SESSION = false;      // true = preskoči intro ako je već odigran u ovom tabu
+
+/* ===== Ako želimo odigrati samo jednom po sesiji ===== */
+if (PLAY_ONCE_PER_SESSION && sessionStorage.getItem('introPlayed') === 'yes') {
+  location.replace(REDIRECT_URL);
+}
+
+/* ===== Podaci (demo) ===== */
+const years = [
+  2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,
+  2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,
+  2020,2021,2022,2023,2024,2025
+];
+const prices = [
+  100,80,70,85,95,110,125,140,65,90,
+  110,105,120,150,170,180,190,220,210,250,
+  160,300,280,350,380,400
+];
+
+/* Događaji */
+const crisisEvents = {
+  2002:'Dot-com Bubble Crash',
+  2008:'Global Financial Crisis',
+  2020:'COVID Crash'
+};
+const halvingEvents = {
+  2012:'1st BTC Halving',
+  2016:'2nd BTC Halving'
+};
+
+/* ===== Elementi ===== */
+const canvas = document.getElementById('spyChart');
+const labelLayer = document.getElementById('labelLayer');
+const fadeEl = document.getElementById('fade');
+const skipBtn = document.getElementById('skipBtn');
+
+/* ===== Chart.js ===== */
+const chart = new Chart(canvas.getContext('2d'), {
+  type:'line',
+  data:{
+    labels: years,
+    datasets:[
+      {
+        label:'SPY Price',
+        data: prices,
+        borderColor:'#39d98a',
+        backgroundColor:'transparent',
+        borderWidth:2, tension:.4, pointRadius:0
+      }
+    ]
+  },
+  options:{
+    responsive:true,
+    maintainAspectRatio:false,
+    animation:{
+      duration:ANIM_DURATION_MS,
+      easing:'linear',
+      onProgress(anim){
+        if (SHOW_EVENTS_PROGRESSIVE){
+          const p = anim.currentStep / anim.numSteps;
+          showEventsProgressive(p);
+        }
+        repositionLabels();
+      },
+      onComplete(){
+        repositionLabels();
+        if (AUTO_REDIRECT) startExit();
+      }
+    },
+    scales:{
+      x:{ ticks:{color:'#aaa'}, grid:{color:'rgba(255,255,255,.05)'} },
+      y:{ ticks:{color:'#aaa'}, grid:{color:'rgba(255,255,255,.05)'} }
+    },
+    plugins:{ legend:{ display:false } }
+  }
+});
+
+/* ===== Labele ===== */
+// Blagi korektiv položaja — npr. 2020 mrvu ulijevo da ne udara u rub
+function baseOffsetForLabel(year, text){
+  let x = 6, y = -12;
+  if (year === 2020 && text === crisisEvents[2020]) x -= 70; // COVID Crash lijevo
+  return { x, y };
+}
+
+if (!SHOW_EVENTS_PROGRESSIVE){
+  placeAllEventsOnce();
+  requestAnimationFrame(()=> {
+    document.querySelectorAll('.event-label').forEach(el => el.classList.add('show'));
+  });
+}
+
+function showEventsProgressive(progress){
+  const total = years.length;
+  const shownIndex = Math.floor(progress * (total - 1));
+  const shownYear = years[shownIndex];
+
+  // krize
+  Object.entries(crisisEvents).forEach(([year, text]) => {
+    if (+year <= shownYear) placeLabelOnce(+year, text, '#fff');
+  });
+  // halving (samo 2012 i 2016)
+  Object.entries(halvingEvents).forEach(([year, text]) => {
+    if (+year <= shownYear) placeLabelOnce(+year, text, '#FFD700');
+  });
+}
+
+function placeAllEventsOnce(){
+  Object.entries(crisisEvents).forEach(([year, text]) => {
+    placeLabelOnce(+year, text, '#fff');
+  });
+  Object.entries(halvingEvents).forEach(([year, text]) => {
+    placeLabelOnce(+year, text, '#FFD700');
+  });
+}
+
+function placeLabelOnce(year, text, color){
+  const existing = labelLayer.querySelector(
+    `.event-label[data-year="${year}"][data-text="${cssEscape(text)}"]`
+  );
+  if (existing) return;
+
+  const el = document.createElement('div');
+  el.className='event-label';
+  el.dataset.year=String(year);
+  el.dataset.text=text;
+  el.style.color=color;
+  el.textContent=text;
+  labelLayer.appendChild(el);
+
+  positionLabel(el);
+  requestAnimationFrame(() => el.classList.add('show'));
+}
+
+function positionLabel(el){
+  const year = +el.dataset.year;
+  const idx = years.indexOf(year);
+  if (idx === -1) return;
+
+  const xPx = chart.scales.x.getPixelForValue(idx);
+  const yPx = chart.scales.y.getPixelForValue(prices[idx]);
+
+  const { x:dx, y:dy } = baseOffsetForLabel(year, el.dataset.text);
+
+  let left = xPx + dx;
+  let top  = yPx + dy;
+
+  // zadrži unutar sloja
+  const margin = 4;
+  const W = labelLayer.clientWidth, H = labelLayer.clientHeight;
+  const w = el.offsetWidth || 0, h = el.offsetHeight || 0;
+
+  if (left < margin) left = margin;
+  if (left + w > W - margin) left = Math.max(margin, W - margin - w);
+  if (top < margin) top = margin;
+  if (top + h > H - margin) top = Math.max(margin, H - margin - h);
+
+  el.style.left = `${left}px`;
+  el.style.top  = `${top}px`;
+}
+
+function repositionLabels(){
+  labelLayer.querySelectorAll('.event-label').forEach(positionLabel);
+}
+
+function cssEscape(str){ return str.replace(/["\\]/g, '\\$&'); }
+
+/* ===== Fade + Redirect (Skip i auto) ===== */
+function startExit(){
+  if (fadeEl.classList.contains('show')) return; // spriječi dvostruki poziv
+  fadeEl.classList.add('show');
+  sessionStorage.setItem('introPlayed','yes');
+  setTimeout(()=>{
+    location.replace(REDIRECT_URL);
+  }, REDIRECT_DELAY_MS);
+}
+skipBtn.addEventListener('click', startExit);
+
+/* ===== Resize ===== */
+window.addEventListener('resize', () => {
+  clearTimeout(window.__relayoutTimer);
+  window.__relayoutTimer = setTimeout(repositionLabels, 60);
+});
+</script>
+</body>
+</html>
+>
+
+
+
+
+
+
+

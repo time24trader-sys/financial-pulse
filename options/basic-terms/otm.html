@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Out-of-the-Money (OTM)</title>
+  <link rel="stylesheet" href="/css/options.css" />
+
+  <!-- Meta Description (SEO) -->
+  <meta name="description" content="Financial Pulse: Options: Basic Terms - Out of money, OTM">
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="Financial Pulse">
+  <meta property="og:description" content="Option education, basic terms, Out of money, OTM">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialpulse24.com">
+  <meta property="og:site_name" content="Financial Pulse">
+  <meta property="og:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Financial Pulse">
+  <meta name="twitter:description" content="Option education, basic terms, Out of money, OTM">
+  <meta name="twitter:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+
+  <!-- Favicons -->
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-48.png" sizes="48x48" type="image/png">
+  <link rel="apple-touch-icon" href="https://financialpulse24.com/assets/apple-touch-icon-180.png" sizes="180x180">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP.svg" type="image/svg+xml">
+
+  <!-- Theme Color for Mobile Browsers -->
+  <meta name="theme-color" content="#121212">
+
+</head>
+<body>
+
+  <div>
+    <a href="/options/trading-options.html" class="nav-button">Home - Options</a>
+  </div>
+
+  <section class="vs-section">
+    <h2>Out-of-the-Money (OTM)</h2>
+    <p>
+      An option is considered <b>Out-of-the-Money (OTM)</b> when exercising it would not be profitable based on the current market price.
+    </p>
+    <p>
+      A <b>call option</b> is OTM when the underlying asset’s market price is <b>below</b> the strike price — for example, stock at $40 and strike at $50.
+    </p>
+    <p>
+      A <b>put option</b> is OTM when the underlying asset’s market price is <b>above</b> the strike price — for example, stock at $60 and strike at $50.
+    </p>
+    <p>
+      OTM options have <b>no intrinsic value</b> and consist only of extrinsic (time) value. As expiration approaches, if they remain OTM, they will likely expire worthless.
+    </p>
+  </section>
+
+  <section class="vs-section">
+    <h3>Check Your Understanding</h3>
+    <form id="quiz-form-otm">
+      <p><strong>Which of the following describes an out-of-the-money call option?</strong></p>
+      <label><input type="radio" name="otm-answer" value="a"> Stock at $55, strike at $50</label><br>
+      <label><input type="radio" name="otm-answer" value="b"> Stock at $60, strike at $50</label><br>
+      <label><input type="radio" name="otm-answer" value="c"> Stock at $40, strike at $50</label><br>
+      <button type="button" onclick="checkAnswerOTM()" class="nav-button">Submit</button>
+    </form>
+    <div id="feedback-otm" class="context" style="margin-top:1rem;"></div>
+  </section>
+
+
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted tiny">© <span id="year"></span> Financial Pulse. All rights reserved.</p>
+    <div class="socials">
+      <a href="/disclaimer.html" class="social">Disclaimer</a>
+      <a href="/legal/terms.html" class="social">Terms</a>
+      <a href="/legal/privacy.html" class="social">Privacy &amp; Cookies</a>
+      <a href="#" class="social" onclick="window.fpCookies?.open();return false;">Manage cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.fpCookiesConfig = { policyUrl: '../legal/privacy.html', ttlDays: 180 };
+</script>
+<script src="/js/cookies.js"></script>
+
+<script src="js/darkmode.js"></script>
+<script src="/js/quiz.js"></script>
+<script src="/js/year.js" defer></script>
+<script src="/js/cookies.js"></script>
+
+</body>
+</html>
+

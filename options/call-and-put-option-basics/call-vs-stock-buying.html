@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Call Option vs. Stock</title>
+  <link rel="stylesheet" href="/css/options.css" />
+
+   <!-- Meta Description (SEO) -->
+  <meta name="description" content="Financial Pulse: Options: Call options or buying stock?">
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="Financial Pulse">
+  <meta property="og:description" content="Option education, call option, buying stocks">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialpulse24.com">
+  <meta property="og:site_name" content="Financial Pulse">
+  <meta property="og:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Financial Pulse">
+  <meta name="twitter:description" content="Option education, call option, buying stocks">
+  <meta name="twitter:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+
+  <!-- Favicons -->
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-48.png" sizes="48x48" type="image/png">
+  <link rel="apple-touch-icon" href="https://financialpulse24.com/assets/apple-touch-icon-180.png" sizes="180x180">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP.svg" type="image/svg+xml">
+</head>
+<body>
+  <a href="/options/trading-options.html" class="nav-button">Home - Options</a>
+  <a href="/options/call-and-put-option-basics/type-of-options.html" class="nav-button">Previous</a>
+
+  <section class="vs-section">
+    <h2>Buying a Call Option vs. Buying a Stock</h2>
+
+    <p>
+      When you’re bullish on a stock like Tesla (TSLA), you can either buy the stock outright or buy a call option. Both can be profitable, but they have different cost, risk, and reward profiles.
+    </p>
+
+     <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Initial Investment</th>
+          <th>Stock Price at Sale</th>
+          <th>Shares / Contracts</th>
+          <th>Sale Value</th>
+          <th>Profit / Loss</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Buy Call Option<br>(Strike $300)</td>
+          <td>$12,800 (1 contract)</td>
+          <td>$500</td>
+          <td>1 contract</td>
+          <td>$23,400</td>
+          <td>$10,600</td>
+        </tr>
+        <tr>
+          <td>Buy Stock<br>($320/share)</td>
+          <td>$12,800 (40 shares)</td>
+          <td>$500</td>
+          <td>40 shares</td>
+          <td>$20,000</td>
+          <td>$7,200</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h4>Example Notes:</h4>
+    <ul>
+      <li>Current Stock Price: <b>$320</b></li>
+      <li>Call Strike Price: <b>$300</b></li>
+      <li>Premium: <b>$128</b> per share → $12,800 per contract</li>
+      <li>After one year, stock rises to $500</li>
+      <li>Intrinsic Value = $200, Extrinsic ≈ $54 → Option worth ~$254</li>
+    </ul>
+
+    <p>
+      In this case, the call option significantly outperforms the stock. But remember, if TSLA doesn’t move above the strike + premium before expiration, the option could expire worthless.
+    </p>
+
+    <p class="highlight-box"><b>Summary:</b> Options offer higher leverage, but they come with time limits. Stocks don’t expire and may be safer for longer-term investors.</p>
+  </section>
+
+  <section class="vs-section">
+    <h3>Check Your Understanding</h3>
+    <form id="quiz-form-call-vs-stock">
+      <p><strong>Why might an investor choose a call option instead of buying the stock directly?</strong></p>
+      <label><input type="radio" name="call-vs-stock-answer" value="a"> It guarantees profit as long as the stock price rises</label><br>
+      <label><input type="radio" name="call-vs-stock-answer" value="b"> It allows for greater potential return with a smaller initial investment</label><br>
+      <label><input type="radio" name="call-vs-stock-answer" value="c"> It avoids all types of risk, including time decay</label><br>
+      <button type="button" onclick="checkAnswerCallVsStock()" class="nav-button">Submit</button>
+    </form>
+    <div id="feedback-call-vs-stock" class="context" style="margin-top:1rem;"></div>
+  </section>
+
+ <footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted tiny">© <span id="year"></span> Financial Pulse. All rights reserved.</p>
+    <div class="socials">
+      <a href="/disclaimer.html" class="social">Disclaimer</a>
+      <a href="/legal/terms.html" class="social">Terms</a>
+      <a href="/legal/privacy.html" class="social">Privacy &amp; Cookies</a>
+      <a href="#" class="social" onclick="window.fpCookies?.open();return false;">Manage cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.fpCookiesConfig = { policyUrl: '../legal/privacy.html', ttlDays: 180 };
+</script>
+<script src="/js/cookies.js"></script>
+
+<script src="js/darkmode.js"></script>
+<script src="/js/quiz.js"></script>
+<script src="/js/year.js" defer></script>
+
+</body>
+</html>
+

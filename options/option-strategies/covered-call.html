@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Covered Call Strategy</title>
+  <link rel="stylesheet" href="/css/options.css" />
+
+   <!-- Meta Description (SEO) -->
+  <meta name="description" content="Financial Pulse: Option strategies: Covered call">
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="Financial Pulse">
+  <meta property="og:description" content="Option education, strategies, hedging, covered call">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialpulse24.com">
+  <meta property="og:site_name" content="Financial Pulse">
+  <meta property="og:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Financial Pulse">
+  <meta name="twitter:description" content="Option education, strategies, hedging, covered call">
+  <meta name="twitter:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+
+  <!-- Favicons -->
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-48.png" sizes="48x48" type="image/png">
+  <link rel="apple-touch-icon" href="https://financialpulse24.com/assets/apple-touch-icon-180.png" sizes="180x180">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <div>
+    <a href="/options/trading-options.html" class="nav-button">Home - Options</a>
+  </div>
+
+  <section class="vs-section" id="strategies">
+    <h2>Covered Call Strategy</h2>
+    <p>
+      A <strong>covered call</strong> is an options trading strategy that involves holding a long position in a stock while simultaneously selling (writing) a call option on the same stock. This strategy is popular among investors looking to generate additional income from stocks they already own.
+    </p>
+
+    <h3>How to Set It Up</h3>
+    <ul>
+      <li>Buy (or already own) 100 shares of a stock.</li>
+      <li>Sell 1 call option contract against those shares (1 contract = 100 shares).</li>
+      <li>Choose a strike price above the current market price and an expiration date.</li>
+    </ul>
+
+    <h3>Benefits</h3>
+    <ul>
+      <li>Earn premium income from the call option.</li>
+      <li>Provides limited downside protection.</li>
+      <li>Works well in sideways or slightly bullish markets.</li>
+    </ul>
+
+    <h3>Risks</h3>
+    <ul>
+      <li>If the stock rises above the strike price, you may be forced to sell at that price and miss out on further gains.</li>
+      <li>Limited upside potential.</li>
+      <li>If the stock drops significantly, the option premium may not cover the loss.</li>
+    </ul>
+
+    <h3>Example: Covered Call on Tesla</h3>
+    <p>
+      Imagine you own <strong>100 shares of Tesla</strong> bought at <strong>$300</strong>. You sell a <strong>call option with a $320 strike price</strong> and receive a <strong>$10 premium per share</strong>. Here's how your profit/loss changes based on Tesla's price at expiration:
+    </p>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Tesla Price</th>
+            <th>Stock P/L</th>
+            <th>Option P/L</th>
+            <th>Total P/L</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>$270</td>
+            <td>−$3,000</td>
+            <td>+$1,000</td>
+            <td>−$2,000</td>
+          </tr>
+          <tr>
+            <td>$300</td>
+            <td>$0</td>
+            <td>+$1,000</td>
+            <td>+$1,000</td>
+          </tr>
+          <tr>
+            <td>$310</td>
+            <td>+$1,000</td>
+            <td>+$1,000</td>
+            <td>+$2,000</td>
+          </tr>
+          <tr>
+            <td>$320</td>
+            <td>+$2,000</td>
+            <td>+$1,000</td>
+            <td>+$3,000</td>
+          </tr>
+          <tr>
+            <td>$340+</td>
+            <td>+$2,000</td>
+            <td>+$1,000</td>
+            <td>+$3,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      As the table shows, your maximum profit is capped at <strong>$3,000</strong> (strike gain + premium), and your losses are reduced by the premium you received. This is the core trade-off of a covered call.
+    </p>
+
+    <div class="image-container">
+      <img src="/assets/img/example-covered-call.png" alt="Covered Call Diagram" />
+      <p class="caption">Custom payoff diagram of a Covered Call strategy using Tesla as an example</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted tiny">© <span id="year"></span> Financial Pulse. All rights reserved.</p>
+    <div class="socials">
+      <a href="/disclaimer.html" class="social">Disclaimer</a>
+      <a href="/legal/terms.html" class="social">Terms</a>
+      <a href="/legal/privacy.html" class="social">Privacy &amp; Cookies</a>
+      <a href="#" class="social" onclick="window.fpCookies?.open();return false;">Manage cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.fpCookiesConfig = { policyUrl: '../legal/privacy.html', ttlDays: 180 };
+</script>
+<script src="/js/cookies.js"></script>
+
+<script src="/js/darkmode.js"></script>
+<script src="/js/quiz.js"></script>
+<script src="/js/year.js" defer></script>
+<script src="/js/cookies.js"></script>
+
+</body>
+</html>
+

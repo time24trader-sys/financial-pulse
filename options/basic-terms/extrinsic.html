@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Extrinsic Value</title>
+  <link rel="stylesheet" href="/css/options.css" />
+
+  <!-- Meta Description (SEO) -->
+  <meta name="description" content="Financial Pulse: Options: Basic Terms - Extrinsic value">
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="Financial Pulse">
+  <meta property="og:description" content="Option education, basic terms, Extrinsic value">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialpulse24.com">
+  <meta property="og:site_name" content="Financial Pulse">
+  <meta property="og:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Financial Pulse">
+  <meta name="twitter:description" content="Option education, basic terms, Extrinsic value">
+  <meta name="twitter:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+
+  <!-- Favicons -->
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-48.png" sizes="48x48" type="image/png">
+  <link rel="apple-touch-icon" href="https://financialpulse24.com/assets/apple-touch-icon-180.png" sizes="180x180">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP.svg" type="image/svg+xml">
+
+  <!-- Theme Color for Mobile Browsers -->
+  <meta name="theme-color" content="#121212">
+
+</head>
+
+<body>
+  <div>
+    <a href="/options/trading-options.html" class="nav-button">Home - Options</a>
+  </div>
+
+  <section class="vs-section">
+    <h2>Extrinsic Value</h2>
+    <p>
+      Extrinsic value is the portion of an option’s price that exceeds its intrinsic value. It's often referred to as the option’s <b>time value</b>.
+      This value reflects the probability that the option will gain intrinsic value before expiration.
+    </p>
+    <p>
+      Key factors influencing extrinsic value include time remaining until expiration, implied volatility, and interest rates.
+      As expiration nears, extrinsic value erodes — this is known as <b>time decay</b> (theta).
+    </p>
+    <p>
+      For example, if a call option trades for $5 and has $2 of intrinsic value, the remaining $3 is its extrinsic value.
+      At-the-money options typically have the most extrinsic value.
+    </p>
+  </section>
+
+  <section class="vs-section">
+    <h3>Check Your Understanding</h3>
+    <form id="quiz-form-extrinsic">
+      <p><strong>What does extrinsic value represent in an option’s price?</strong></p>
+      <label><input type="radio" name="extrinsic-answer" value="a"> The total premium of an in-the-money option</label><br>
+      <label><input type="radio" name="extrinsic-answer" value="b"> The value based on time and volatility, above intrinsic value</label><br>
+      <label><input type="radio" name="extrinsic-answer" value="c"> The amount by which the stock price exceeds the strike price</label><br>
+      <button type="button" onclick="checkAnswerExtrinsic()" class="nav-button">Submit</button>
+    </form>
+    <div id="feedback-extrinsic" class="context" style="margin-top:1rem;"></div>
+  </section>
+
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted tiny">© <span id="year"></span> Financial Pulse. All rights reserved.</p>
+    <div class="socials">
+      <a href="/disclaimer.html" class="social">Disclaimer</a>
+      <a href="/legal/terms.html" class="social">Terms</a>
+      <a href="/legal/privacy.html" class="social">Privacy &amp; Cookies</a>
+      <a href="#" class="social" onclick="window.fpCookies?.open();return false;">Manage cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.fpCookiesConfig = { policyUrl: '../legal/privacy.html', ttlDays: 180 };
+</script>
+<script src="/js/cookies.js"></script>
+
+<script src="jss/darkmode.js"></script>
+<script src="/js/quiz.js"></script>
+<script src="/js/year.js" defer></script>
+<script src="/js/cookies.js"></script>
+</body>
+</html>

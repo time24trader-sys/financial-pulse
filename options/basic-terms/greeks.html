@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Greeks</title>
+  <link rel="stylesheet" href="/css/options.css" />
+
+  <!-- Meta Description (SEO) -->
+  <meta name="description" content="Financial Pulse: Options: Basic Terms - Greeks, Theta, Delta, Gamma">
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="Financial Pulse">
+  <meta property="og:description" content="Option education, basic terms, Greeeks, Theta, Delta, Gamma">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://financialpulse24.com">
+  <meta property="og:site_name" content="Financial Pulse">
+  <meta property="og:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Financial Pulse">
+  <meta name="twitter:description" content="Option education, basic terms, Greeks, Theta, Delta, Gamma">
+  <meta name="twitter:image" content="https://financialpulse24.com/assets/og-image-financial-pulse-full.jpg">
+
+  <!-- Favicons -->
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP-48.png" sizes="48x48" type="image/png">
+  <link rel="apple-touch-icon" href="https://financialpulse24.com/assets/apple-touch-icon-180.png" sizes="180x180">
+  <link rel="icon" href="https://financialpulse24.com/assets/faviconFP.svg" type="image/svg+xml">
+
+  <!-- Theme Color for Mobile Browsers -->
+  <meta name="theme-color" content="#121212">
+
+</head>
+
+<body>
+  <div>
+    <a href="/options/trading-options.html" class="nav-button">Home - Options</a>
+  </div>
+
+  <section class="vs-section">
+    <h2>The Greeks</h2>
+    <p>
+      The Greeks are a set of risk measures that help traders understand how different factors impact the price of an option. They are essential tools for managing and assessing the behavior of an options position.
+    </p>
+
+    <h3>Δ Delta</h3>
+    <p>
+      Measures how much an option’s price is expected to move for every $1 change in the underlying asset. A call option with a delta of 0.50 will increase in value by $0.50 if the stock rises by $1.
+      Delta also gives insight into the probability of the option expiring in the money.
+    </p>
+
+    <h3>Γ Gamma</h3>
+    <p>
+      Indicates the rate of change in delta for every $1 move in the underlying asset. Gamma is highest for at-the-money options and helps traders understand the stability of delta over time.
+    </p>
+
+    <h3>Θ Theta</h3>
+    <p>
+      Represents the rate of time decay — how much value an option loses each day as expiration approaches, assuming no other changes. For example, a theta of -0.05 means the option loses $0.05 per day.
+    </p>
+
+    <h3>ν Vega</h3>
+    <p>
+      Measures the sensitivity of the option’s price to a 1% change in implied volatility. Options with longer durations tend to have higher Vega.
+    </p>
+
+    <h3>ρ Rho</h3>
+    <p>
+      Reflects how much the price of an option would change given a 1% shift in interest rates. While Rho is often less impactful than other Greeks, it becomes more relevant in long-term options.
+    </p>
+  </section>
+
+  <section class="vs-section">
+    <h3>Check Your Understanding</h3>
+    <form id="quiz-form-greeks">
+      <p><strong>Which Greek is primarily responsible for measuring time decay?</strong></p>
+      <label><input type="radio" name="greeks-answer" value="a"> Vega</label><br>
+      <label><input type="radio" name="greeks-answer" value="b"> Delta</label><br>
+      <label><input type="radio" name="greeks-answer" value="c"> Theta</label><br>
+      <label><input type="radio" name="greeks-answer" value="d"> Rho</label><br>
+      <button type="button" onclick="checkAnswerGreeks()" class="nav-button">Submit</button>
+    </form>
+    <div id="feedback-greeks" class="context" style="margin-top:1rem;"></div>
+  </section>
+
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted tiny">© <span id="year"></span> Financial Pulse. All rights reserved.</p>
+    <div class="socials">
+      <a href="/disclaimer.html" class="social">Disclaimer</a>
+      <a href="/legal/terms.html" class="social">Terms</a>
+      <a href="/legal/privacy.html" class="social">Privacy &amp; Cookies</a>
+      <a href="#" class="social" onclick="window.fpCookies?.open();return false;">Manage cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.fpCookiesConfig = { policyUrl: '../legal/privacy.html', ttlDays: 180 };
+</script>
+<script src="/js/cookies.js"></script>
+
+<script src="js/darkmode.js"></script>
+<script src="/js/quiz.js"></script>
+<script src="/js/year.js" defer></script>
+<script src="/js/cookies.js"></script>
+</body>
+</html>
