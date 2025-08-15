@@ -51,7 +51,7 @@ async function loadArticles(mountSelector) {
   const mount = $(mountSelector);
   if (!mount) return;
   try {
-    const res = await fetch('articles.html');
+    const res = await fetch('articles.html?v=' + Date.now(), { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load articles');
     mount.innerHTML = await res.text();
   } catch (err) {
