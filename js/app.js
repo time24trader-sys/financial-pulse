@@ -95,6 +95,30 @@ function setupSmoothScroll() {
 
 // ----- Contact form (mailto fallback) -----
 function setupContactForm() {
+  // Inject minimal, scoped CSS samo za .contact-form
+  if (!document.getElementById('contactFormForceWhiteText')) {
+    const style = document.createElement('style');
+    style.id = 'contactFormForceWhiteText';
+    style.textContent = `
+      .contact-form input,
+      .contact-form textarea {
+        color: #fff !important;
+        caret-color: #fff;
+      }
+      .contact-form input::placeholder,
+      .contact-form textarea::placeholder {
+        color: rgba(255,255,255,0.7) !important;
+      }
+      /* Edge/Chrome autofill */
+      .contact-form input:-webkit-autofill,
+      .contact-form textarea:-webkit-autofill {
+        -webkit-text-fill-color: #fff !important;
+        transition: background-color 9999s ease-in-out 0s !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   const form = $('#contactForm');
   const msg  = $('#formMsg');
   if (!form) return;
@@ -288,6 +312,7 @@ if (document.readyState === 'loading') {
 } else {
   init();
 }
+
 
 
 
