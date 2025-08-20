@@ -93,9 +93,9 @@ function setupSmoothScroll() {
   });
 }
 
-// ----- Contact form (Netlify + mailto fallback) -----
+// ----- Contact form (Netlify, no JS submit handler) -----
 function setupContactForm() {
-  // Minimal CSS samo za .contact-form (ne dira ostatak)
+  // Minimal CSS samo za .contact-form (ne dira ostatak stranice)
   if (!document.getElementById('contactFormForceWhiteText')) {
     const style = document.createElement('style');
     style.id = 'contactFormForceWhiteText';
@@ -109,52 +109,13 @@ function setupContactForm() {
     document.head.appendChild(style);
   }
 
+  // Namjerno NE kačimo submit handler – Netlify odrađuje POST i redirect.
   const form = document.getElementById('contactForm');
-  const msg  = document.getElementById('formMsg');
   if (!form) return;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (msg) msg.textContent = 'Sending…';
-
-    try {
-      if (form.hasAttribute('data-netlify')) {
-        // Pripremi FormData (NE postavljamo Content-Type ručno)
-        const fd = new FormData(form);
-        // osiguraj da je form-name prisutan i točan
-        if (!fd.get('form-name')) fd.append('form-name', form.getAttribute('name') || 'contact');
-        // honeypot (ako postoji)
-        if (!fd.get('bot-field') && form['bot-field']) fd.append('bot-field', form['bot-field'].value);
-
-        // endpoint: koristi action ili trenutnu putanju (stabilnije od “/” na podstranicama)
-        const endpoint = form.getAttribute('action') || window.location.pathname;
-
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          body: fd
-        });
-
-        if (!res.ok) throw new Error('Netlify form submit failed: ' + res.status);
-        if (msg) msg.textContent = 'Thanks! I’ll get back to you shortly.';
-        form.reset();
-        return;
-      }
-
-      // Mailto fallback (ako nema data-netlify)
-      const body = encodeURIComponent(
-        `Name: ${form.name.value}\nEmail: ${form.email.value}\n\n${form.message.value}`
-      );
-      window.location.href = `mailto:${EMAIL}?subject=Financial%20Pulse%20Inquiry&body=${body}`;
-      if (msg) msg.textContent = 'Opening your email client…';
-
-    } catch (err) {
-      console.error(err);
-      if (msg) msg.textContent = 'Could not send right now. Please email me directly.';
-    }
-  });
 }
 
 document.addEventListener('DOMContentLoaded', setupContactForm);
+
 
 
 // ----- Disclaimer modal (EN/HR + session) -----
