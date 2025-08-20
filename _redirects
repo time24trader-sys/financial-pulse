@@ -1,0 +1,10 @@
+# Force apex to primary www (preserve method – važno za forme)
+https://financialpulse24.com/*   https://www.financialpulse24.com/:splat 308!
+
+# Force HTTP to HTTPS on both hosts (preserve method)
+http://financialpulse24.com/*    https://www.financialpulse24.com/:splat 308!
+http://www.financialpulse24.com/* https://www.financialpulse24.com/:splat 308!
+
+# (Opcionalno) Ako negdje postoji link s pravopisnim nazivom:
+# Redirect assignment -> assigment (ispravi ako kasnije preimenuješ datoteku)
+# /options/basic-terms/assignment.html   /options/basic-terms/assigment.html 301
