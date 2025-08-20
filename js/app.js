@@ -95,7 +95,7 @@ function setupSmoothScroll() {
 
 // ----- Contact form (Netlify + mailto fallback) -----
 function setupContactForm() {
-  // Minimal CSS za bijeli tekst (kako smo već složili)
+  // Minimal CSS samo za .contact-form (ne dira ostatak)
   if (!document.getElementById('contactFormForceWhiteText')) {
     const style = document.createElement('style');
     style.id = 'contactFormForceWhiteText';
@@ -109,44 +109,38 @@ function setupContactForm() {
     document.head.appendChild(style);
   }
 
-  const form = document.getElementById('contactForm'); // tvoj $
+  const form = document.getElementById('contactForm');
   const msg  = document.getElementById('formMsg');
   if (!form) return;
-
-  // helper: url-encode objekt
-  const encode = (data) =>
-    Object.keys(data)
-      .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
-      .join('&');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (msg) msg.textContent = 'Sending…';
 
     try {
-      // Ako je Netlify Forms omogućen na formi → pošalji POST na root
       if (form.hasAttribute('data-netlify')) {
-        const data = {
-          'form-name': form.getAttribute('name') || 'contact',
-          'bot-field' : form['bot-field'] ? form['bot-field'].value : '',
-          'name'     : form.name.value,
-          'email'    : form.email.value,
-          'message'  : form.message.value
-        };
+        // Pripremi FormData (NE postavljamo Content-Type ručno)
+        const fd = new FormData(form);
+        // osiguraj da je form-name prisutan i točan
+        if (!fd.get('form-name')) fd.append('form-name', form.getAttribute('name') || 'contact');
+        // honeypot (ako postoji)
+        if (!fd.get('bot-field') && form['bot-field']) fd.append('bot-field', form['bot-field'].value);
 
-        const res = await fetch('/', {
+        // endpoint: koristi action ili trenutnu putanju (stabilnije od “/” na podstranicama)
+        const endpoint = form.getAttribute('action') || window.location.pathname;
+
+        const res = await fetch(endpoint, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: encode(data)
+          body: fd
         });
 
-        if (!res.ok) throw new Error('Netlify form submit failed');
+        if (!res.ok) throw new Error('Netlify form submit failed: ' + res.status);
         if (msg) msg.textContent = 'Thanks! I’ll get back to you shortly.';
         form.reset();
         return;
       }
 
-      // Mailto fallback (ako form nema data-netlify / action)
+      // Mailto fallback (ako nema data-netlify)
       const body = encodeURIComponent(
         `Name: ${form.name.value}\nEmail: ${form.email.value}\n\n${form.message.value}`
       );
@@ -154,13 +148,12 @@ function setupContactForm() {
       if (msg) msg.textContent = 'Opening your email client…';
 
     } catch (err) {
-      if (msg) msg.textContent = 'Could not send right now. Please email me directly.';
       console.error(err);
+      if (msg) msg.textContent = 'Could not send right now. Please email me directly.';
     }
   });
 }
 
-// inicijalizacija
 document.addEventListener('DOMContentLoaded', setupContactForm);
 
 
