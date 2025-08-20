@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home -->
+  <url>
+    <loc>https://www.financialpulse24.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Glavne stranice -->
+  <url><loc>https://www.financialpulse24.com/intro.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/articles.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/disclaimer.html</loc></url>
+
+  <!-- Legal -->
+  <url><loc>https://www.financialpulse24.com/legal/privacy.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/legal/terms.html</loc></url>
+
+  <!-- Options (landing) -->
+  <url>
+    <loc>https://www.financialpulse24.com/options/trading-options.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Options / basic-terms -->
+  <url><loc>https://www.financialpulse24.com/options/basic-terms/assigment.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/options/basic-terms/atm.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/options/basic-terms/expiration-date.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/options/basic-terms/extrinsic.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/options/basic-terms/greeks.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/options/basic-terms/intrinsic.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/options/basic-terms/itm.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/options/basic-terms/otm.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/options/basic-terms/premium.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/options/basic-terms/strike-price.html</loc></url>
+
+  <!-- Options / call-and-put-option-basics -->
+  <url><loc>https://www.financialpulse24.com/options/call-and-put-option-basics/call-vs-stock-buying.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/options/call-and-put-option-basics/put-buying-vs-shorting.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/options/call-and-put-option-basics/type-of-options.html</loc></url>
+
+  <!-- Options / option-strategies -->
+  <url><loc>https://www.financialpulse24.com/options/option-strategies/cash-secured-put.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/options/option-strategies/covered-call.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/options/option-strategies/leaps.html</loc></url>
+  <url><loc>https://www.financialpulse24.com/options/option-strategies/vertical-spreads.html</loc></url>
+
+</urlset>
