@@ -93,65 +93,76 @@ function setupSmoothScroll() {
   });
 }
 
-// ----- Contact form (mailto fallback) -----
+// ----- Contact form (Netlify + mailto fallback) -----
 function setupContactForm() {
-  // Inject minimal, scoped CSS samo za .contact-form
+  // Minimal CSS za bijeli tekst (kako smo već složili)
   if (!document.getElementById('contactFormForceWhiteText')) {
     const style = document.createElement('style');
     style.id = 'contactFormForceWhiteText';
     style.textContent = `
-      .contact-form input,
-      .contact-form textarea {
-        color: #fff !important;
-        caret-color: #fff;
-      }
-      .contact-form input::placeholder,
-      .contact-form textarea::placeholder {
-        color: rgba(255,255,255,0.7) !important;
-      }
-      /* Edge/Chrome autofill */
-      .contact-form input:-webkit-autofill,
-      .contact-form textarea:-webkit-autofill {
-        -webkit-text-fill-color: #fff !important;
-        transition: background-color 9999s ease-in-out 0s !important;
+      .contact-form input, .contact-form textarea { color:#fff !important; caret-color:#fff; }
+      .contact-form input::placeholder, .contact-form textarea::placeholder { color:rgba(255,255,255,0.7) !important; }
+      .contact-form input:-webkit-autofill, .contact-form textarea:-webkit-autofill {
+        -webkit-text-fill-color:#fff !important; transition: background-color 9999s ease-in-out 0s !important;
       }
     `;
     document.head.appendChild(style);
   }
 
-  const form = $('#contactForm');
-  const msg  = $('#formMsg');
+  const form = document.getElementById('contactForm'); // tvoj $
+  const msg  = document.getElementById('formMsg');
   if (!form) return;
 
+  // helper: url-encode objekt
+  const encode = (data) =>
+    Object.keys(data)
+      .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
+      .join('&');
+
   form.addEventListener('submit', async (e) => {
-    // Mailto fallback ako nema action
-    if (!form.action) {
-      e.preventDefault();
+    e.preventDefault();
+    if (msg) msg.textContent = 'Sending…';
+
+    try {
+      // Ako je Netlify Forms omogućen na formi → pošalji POST na root
+      if (form.hasAttribute('data-netlify')) {
+        const data = {
+          'form-name': form.getAttribute('name') || 'contact',
+          'bot-field' : form['bot-field'] ? form['bot-field'].value : '',
+          'name'     : form.name.value,
+          'email'    : form.email.value,
+          'message'  : form.message.value
+        };
+
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: encode(data)
+        });
+
+        if (!res.ok) throw new Error('Netlify form submit failed');
+        if (msg) msg.textContent = 'Thanks! I’ll get back to you shortly.';
+        form.reset();
+        return;
+      }
+
+      // Mailto fallback (ako form nema data-netlify / action)
       const body = encodeURIComponent(
         `Name: ${form.name.value}\nEmail: ${form.email.value}\n\n${form.message.value}`
       );
       window.location.href = `mailto:${EMAIL}?subject=Financial%20Pulse%20Inquiry&body=${body}`;
       if (msg) msg.textContent = 'Opening your email client…';
-      return;
-    }
 
-    // Inače, POST
-    e.preventDefault();
-    if (msg) msg.textContent = 'Sending…';
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(form)
-      });
-      if (!res.ok) throw new Error('Submit error');
-      if (msg) msg.textContent = 'Thanks! I’ll get back to you shortly.';
-      form.reset();
     } catch (err) {
       if (msg) msg.textContent = 'Could not send right now. Please email me directly.';
+      console.error(err);
     }
   });
 }
+
+// inicijalizacija
+document.addEventListener('DOMContentLoaded', setupContactForm);
+
 
 // ----- Disclaimer modal (EN/HR + session) -----
 function setupDisclaimer() {
