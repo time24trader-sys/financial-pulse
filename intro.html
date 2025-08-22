@@ -1,84 +1,84 @@
 <!doctype html>
 <html lang="hr">
 <head>
-  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
-<meta name="googlebot" content="index,follow">
+  <!-- Ostavljen noindex da se intro ne indeksira -->
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="index.html">
   <noscript><meta http-equiv="refresh" content="0;url=/index.html"></noscript>
 
+  <meta charset="utf-8" />
+  <title>Financial Pulse Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --bg:#121212; --fg:#fff; --accent:#39d98a; }
+    *{box-sizing:border-box}
 
-<meta charset="utf-8" />
-<title>Financial Pulse Website</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<style>
-  :root { --bg:#121212; --fg:#fff; --accent:#39d98a; }
-  *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      min-height:100dvh;
+      display:flex; flex-direction:column; align-items:center;
+      gap:min(3vh,24px);
+      padding-top:72px;
+      padding-bottom:max(8px, env(safe-area-inset-bottom));
+      padding-left:max(8px, env(safe-area-inset-left));
+      padding-right:max(8px, env(safe-area-inset-right));
+      overflow-x:hidden; overflow-y:auto; touch-action:pan-y;
+    }
 
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--fg);
-    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    min-height:100dvh;
-    display:flex; flex-direction:column; align-items:center;
-    gap:min(3vh,24px);
-    padding-top:72px;
-    padding-bottom:max(8px, env(safe-area-inset-bottom));
-    padding-left:max(8px, env(safe-area-inset-left));
-    padding-right:max(8px, env(safe-area-inset-right));
-    overflow-x:hidden; overflow-y:auto; touch-action:pan-y;
-  }
+    /* Naslov iznad grafa */
+    .title-wrap{ width:min(94vw,1100px); text-align:center; }
+    .title-wrap h1{
+      margin:0;
+      font-size:clamp(1.4rem,3vw,2.2rem);
+      font-weight:700; text-transform:uppercase; color:var(--accent);
+      animation:pulse 2s infinite;
+      text-shadow:0 0 10px rgba(57,217,138,0.8);
+    }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
 
-  /* Naslov iznad grafa */
-  .title-wrap{ width:min(94vw,1100px); text-align:center; }
-  .title-wrap h1{
-    margin:0;
-    font-size:clamp(1.4rem,3vw,2.2rem);
-    font-weight:700; text-transform:uppercase; color:var(--accent);
-    animation:pulse 2s infinite;
-    text-shadow:0 0 10px rgba(57,217,138,0.8);
-  }
-  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+    /* Graf kontejner */
+    .chart-wrap{
+      position:relative;
+      width:min(94vw,1100px);
+      aspect-ratio:2/1;
+      border-radius:12px; overflow:hidden;
+    }
+    #spyChart{ width:100%; height:100%; display:block; background:transparent; }
+    #labelLayer{ position:absolute; inset:0; pointer-events:none; }
 
-  /* Graf kontejner */
-  .chart-wrap{
-    position:relative;
-    width:min(94vw,1100px);
-    aspect-ratio:2/1;
-    border-radius:12px; overflow:hidden;
-  }
-  #spyChart{ width:100%; height:100%; display:block; background:transparent; }
-  #labelLayer{ position:absolute; inset:0; pointer-events:none; }
+    /* Portret fix: ne reži dno */
+    @media (orientation:portrait){
+      .chart-wrap{ height:min(54dvh,520px); aspect-ratio:auto; }
+    }
 
-  /* Portret fix: ne reži dno */
-  @media (orientation:portrait){
-    .chart-wrap{ height:min(54dvh,520px); aspect-ratio:auto; }
-  }
+    /* Skip izvan grafa (fixed) */
+    #skipBtn{
+      position:fixed; top:16px; right:16px; z-index:100;
+      background:rgba(255,255,255,.08); color:#fff;
+      border:1px solid rgba(255,255,255,.25);
+      padding:8px 14px; border-radius:8px; cursor:pointer;
+    }
+    #skipBtn:hover{ background:rgba(255,255,255,.18); }
 
-  /* Skip izvan grafa (fixed) */
-  #skipBtn{
-    position:fixed; top:16px; right:16px; z-index:100;
-    background:rgba(255,255,255,.08); color:#fff;
-    border:1px solid rgba(255,255,255,.25);
-    padding:8px 14px; border-radius:8px; cursor:pointer;
-  }
-  #skipBtn:hover{ background:rgba(255,255,255,.18); }
+    /* Labele događaja */
+    .event-label{
+      position:absolute;
+      font-size:clamp(10px,1.1vw,14px);
+      line-height:1.2;
+      opacity:0; transform:translateY(10px);
+      transition:opacity .45s ease, transform .45s ease;
+      white-space:nowrap; text-shadow:0 1px 2px rgba(0,0,0,.6);
+      color:#fff;
+    }
+    .event-label.show{ opacity:1; transform:translateY(0); }
 
-  /* Labele događaja */
-  .event-label{
-    position:absolute;
-    font-size:clamp(10px,1.1vw,14px);
-    line-height:1.2;
-    opacity:0; transform:translateY(10px);
-    transition:opacity .45s ease, transform .45s ease;
-    white-space:nowrap; text-shadow:0 1px 2px rgba(0,0,0,.6);
-    color:#fff;
-  }
-  .event-label.show{ opacity:1; transform:translateY(0); }
-
-  /* Fade (za izlaz) */
-  #fade{ position:fixed; inset:0; background:#000; opacity:0; pointer-events:none; transition:opacity .35s ease; z-index:50; }
-  #fade.show{ opacity:1; pointer-events:auto; }
-</style>
+    /* Fade (za izlaz) */
+    #fade{ position:fixed; inset:0; background:#000; opacity:0; pointer-events:none; transition:opacity .35s ease; z-index:50; }
+    #fade.show{ opacity:1; pointer-events:auto; }
+  </style>
 </head>
 <body>
 
@@ -93,19 +93,23 @@
 
 <div id="fade" aria-hidden="true"></div>
 
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script>
+/* ===== Overlay detekcija (novo) ===== */
+const IS_EMBED = (window.top !== window.self) || new URLSearchParams(location.search).has('embed');
+
 /* ===== Preklopke ===== */
 const SHOW_EVENTS_PROGRESSIVE = true;     // false = sve labele odmah (fiksno + fade)
 const ANIM_DURATION_MS = 8000;
-const AUTO_REDIRECT = true;               // true = automatski redirect na kraju animacije
-const REDIRECT_URL = 'index.html';      // kamo prebaciti
+/* Ako je embed (overlay), NE radimo redirect unutar iframa */
+const AUTO_REDIRECT = IS_EMBED ? false : true;
+const REDIRECT_URL = 'index.html';        // fallback kad se otvara samostalno
 const REDIRECT_DELAY_MS = 500;            // trajanje fade-a prije redirecta
-const PLAY_ONCE_PER_SESSION = false;      // true = preskoči intro ako je već odigran u ovom tabu
+/* Ako se otvori standalone i želiš jednom po sesiji */
+const PLAY_ONCE_PER_SESSION = false;
 
-/* ===== Ako želimo odigrati samo jednom po sesiji ===== */
-if (PLAY_ONCE_PER_SESSION && sessionStorage.getItem('introPlayed') === 'yes') {
+/* ===== Ako se otvori standalone i želiš preskok po sesiji ===== */
+if (!IS_EMBED && PLAY_ONCE_PER_SESSION && sessionStorage.getItem('introPlayed') === 'yes') {
   location.replace(REDIRECT_URL);
 }
 
@@ -169,6 +173,10 @@ const chart = new Chart(canvas.getContext('2d'), {
       onComplete(){
         repositionLabels();
         if (AUTO_REDIRECT) startExit();
+        if (!AUTO_REDIRECT && IS_EMBED) {
+          // Ako je embed bez auto-redirecta, odradi exit da parent može maknuti overlay
+          startExit();
+        }
       }
     },
     scales:{
@@ -180,18 +188,10 @@ const chart = new Chart(canvas.getContext('2d'), {
 });
 
 /* ===== Labele ===== */
-// Blagi korektiv položaja — npr. 2020 mrvu ulijevo da ne udara u rub
 function baseOffsetForLabel(year, text){
   let x = 6, y = -12;
   if (year === 2020 && text === crisisEvents[2020]) x -= 70; // COVID Crash lijevo
   return { x, y };
-}
-
-if (!SHOW_EVENTS_PROGRESSIVE){
-  placeAllEventsOnce();
-  requestAnimationFrame(()=> {
-    document.querySelectorAll('.event-label').forEach(el => el.classList.add('show'));
-  });
 }
 
 function showEventsProgressive(progress){
@@ -206,15 +206,6 @@ function showEventsProgressive(progress){
   // halving (samo 2012 i 2016)
   Object.entries(halvingEvents).forEach(([year, text]) => {
     if (+year <= shownYear) placeLabelOnce(+year, text, '#FFD700');
-  });
-}
-
-function placeAllEventsOnce(){
-  Object.entries(crisisEvents).forEach(([year, text]) => {
-    placeLabelOnce(+year, text, '#fff');
-  });
-  Object.entries(halvingEvents).forEach(([year, text]) => {
-    placeLabelOnce(+year, text, '#FFD700');
   });
 }
 
@@ -269,14 +260,22 @@ function repositionLabels(){
 
 function cssEscape(str){ return str.replace(/["\\]/g, '\\$&'); }
 
-/* ===== Fade + Redirect (Skip i auto) ===== */
+/* ===== Fade + Exit (Skip i kraj animacije) ===== */
 function startExit(){
-  if (fadeEl.classList.contains('show')) return; // spriječi dvostruki poziv
+  if (fadeEl.classList.contains('show')) return; // spriječi dupli poziv
   fadeEl.classList.add('show');
+
+  if (IS_EMBED) {
+    // Javi parentu (index.html) da makne overlay
+    try { window.top.postMessage({ type:'INTRO_DONE' }, '*'); } catch(e){}
+    // mali vizualni delay da se vidi fade; bez redirecta u iframu
+    setTimeout(()=>{}, REDIRECT_DELAY_MS);
+    return;
+  }
+
+  // Standalone fallback
   sessionStorage.setItem('introPlayed','yes');
-  setTimeout(()=>{
-    location.replace(REDIRECT_URL);
-  }, REDIRECT_DELAY_MS);
+  setTimeout(()=>{ location.replace(REDIRECT_URL); }, REDIRECT_DELAY_MS);
 }
 skipBtn.addEventListener('click', startExit);
 
@@ -288,7 +287,7 @@ window.addEventListener('resize', () => {
 </script>
 </body>
 </html>
->
+
 
 
 

@@ -68,15 +68,69 @@
     })();
   </script>
 
-  <!-- Intro redirect (samo jednom po sesiji) -->
-  <script>
-    (function () {
-      if (!sessionStorage.getItem('introPlayed')) {
-        sessionStorage.setItem('introPlayed', 'yes');
-        window.location.href = 'intro.html';
-      }
-    })();
-  </script>
+  <!-- Intro overlay (samo jednom po sesiji) -->
+<script>
+(function () {
+  // pusti korisnika da preskoči intro nakon prve posjete u TOM tabu
+  if (sessionStorage.getItem('introPlayed') === 'yes') return;
+
+  // 1) Izradi overlay kontejner
+  var wrap = document.createElement('div');
+  wrap.id = 'intro-overlay';
+  wrap.setAttribute('aria-hidden','true');
+  // full-screen, iznad svega, bez scrolla ispod
+  wrap.style.position = 'fixed';
+  wrap.style.inset = '0';
+  wrap.style.background = '#000';          // crna podloga dok se iframe učitava
+  wrap.style.zIndex = '99999';
+  wrap.style.display = 'block';
+  wrap.style.opacity = '1';
+  wrap.style.transition = 'opacity .35s ease';
+
+  // 2) Dodaj iframe s intro.html (embed mod)
+  var iframe = document.createElement('iframe');
+  iframe.src = 'intro.html?embed=1';
+  iframe.setAttribute('title','Financial Pulse Intro');
+  iframe.setAttribute('aria-label','Site intro animation');
+  iframe.style.position = 'absolute';
+  iframe.style.inset = '0';
+  iframe.style.width = '100%';
+  iframe.style.height = '100%';
+  iframe.style.border = '0';
+  iframe.style.display = 'block';
+
+  wrap.appendChild(iframe);
+  document.documentElement.appendChild(wrap); // minimalno: ne diramo postojeći body sadržaj
+
+  // 3) Slušaj signal iz iframea da je intro gotov
+  window.addEventListener('message', function(ev){
+    if (!ev || !ev.data || ev.data.type !== 'INTRO_DONE') return;
+
+    // označi da je odrađeno u ovoj sesiji
+    sessionStorage.setItem('introPlayed','yes');
+
+    // mali fade-out pa ukloni overlay
+    requestAnimationFrame(function(){
+      wrap.style.opacity = '0';
+      setTimeout(function(){
+        if (wrap && wrap.parentNode) wrap.parentNode.removeChild(wrap);
+      }, 380);
+    });
+  }, { passive:true });
+
+  // (neobavezno) safety net: ako nešto pođe po zlu, makni overlay nakon 20s
+  setTimeout(function(){
+    if (!sessionStorage.getItem('introPlayed')) {
+      sessionStorage.setItem('introPlayed','yes');
+      try { wrap.style.opacity = '0'; } catch(e){}
+      setTimeout(function(){
+        if (wrap && wrap.parentNode) wrap.parentNode.removeChild(wrap);
+      }, 380);
+    }
+  }, 20000);
+})();
+</script>
+
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/global.css" />
