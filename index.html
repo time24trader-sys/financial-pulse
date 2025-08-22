@@ -14,8 +14,7 @@
   <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
   <meta name="googlebot" content="index,follow">
 
-
-  <!-- Open Graph (Facebook, LinkedIn) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Financial Pulse">
   <meta property="og:description" content="Fresh market insights on stocks & crypto, options education, and more.">
   <meta property="og:type" content="website">
@@ -31,24 +30,14 @@
   <meta name="twitter:image" content="https://www.financialpulse24.com/assets/og-image-financial-pulse-full.png">
 
   <!-- Favicons -->
-  <!-- Root favicon.ico (najbitnije za kompatibilnost) -->
   <link rel="shortcut icon" href="/favicon.ico?v=3">
-
-  <!-- PNG varijante (iz assets foldera) -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/faviconFP-32.png?v=3">
   <link rel="icon" type="image/png" sizes="48x48" href="/assets/faviconFP-48.png?v=3">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-180.png?v=3">
-
-  <!-- SVG (opcionalno, moderni browseri) -->
   <link rel="icon" href="/assets/faviconFP.svg?v=3" type="image/svg+xml">
 
-  <!-- (Opcionalno) Safari pinned tab -->
-  <!-- <link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#39d98a"> -->
-
-  <!-- Theme Color for Mobile Browsers -->
+  <!-- Theme Color -->
   <meta name="theme-color" content="#121212">
-</head>
-
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,71 +58,62 @@
   </script>
 
   <!-- Intro overlay (samo jednom po sesiji) -->
-<script>
-(function () {
-  // pusti korisnika da preskoči intro nakon prve posjete u TOM tabu
-  if (sessionStorage.getItem('introPlayed') === 'yes') return;
+  <script>
+  (function () {
+    if (sessionStorage.getItem('introPlayed') === 'yes') return;
 
-  // 1) Izradi overlay kontejner
-  var wrap = document.createElement('div');
-  wrap.id = 'intro-overlay';
-  wrap.setAttribute('aria-hidden','true');
-  // full-screen, iznad svega, bez scrolla ispod
-  wrap.style.position = 'fixed';
-  wrap.style.inset = '0';
-  wrap.style.background = '#000';          // crna podloga dok se iframe učitava
-  wrap.style.zIndex = '99999';
-  wrap.style.display = 'block';
-  wrap.style.opacity = '1';
-  wrap.style.transition = 'opacity .35s ease';
+    var wrap = document.createElement('div');
+    wrap.id = 'intro-overlay';
+    wrap.setAttribute('aria-hidden','true');
+    wrap.style.position = 'fixed';
+    wrap.style.inset = '0';
+    wrap.style.background = '#000';
+    wrap.style.zIndex = '99999';
+    wrap.style.display = 'block';
+    wrap.style.opacity = '1';
+    wrap.style.transition = 'opacity .35s ease';
 
-  // 2) Dodaj iframe s intro.html (embed mod)
-  var iframe = document.createElement('iframe');
-  iframe.src = 'intro.html?embed=1';
-  iframe.setAttribute('title','Financial Pulse Intro');
-  iframe.setAttribute('aria-label','Site intro animation');
-  iframe.style.position = 'absolute';
-  iframe.style.inset = '0';
-  iframe.style.width = '100%';
-  iframe.style.height = '100%';
-  iframe.style.border = '0';
-  iframe.style.display = 'block';
+    var iframe = document.createElement('iframe');
+    iframe.src = 'intro.html?embed=1';
+    iframe.setAttribute('title','Financial Pulse Intro');
+    iframe.setAttribute('aria-label','Site intro animation');
+    iframe.style.position = 'absolute';
+    iframe.style.inset = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = '0';
+    iframe.style.display = 'block';
 
-  wrap.appendChild(iframe);
-  document.documentElement.appendChild(wrap); // minimalno: ne diramo postojeći body sadržaj
+    wrap.appendChild(iframe);
+    document.documentElement.appendChild(wrap);
 
-  // 3) Slušaj signal iz iframea da je intro gotov
-  window.addEventListener('message', function(ev){
-    if (!ev || !ev.data || ev.data.type !== 'INTRO_DONE') return;
-
-    // označi da je odrađeno u ovoj sesiji
-    sessionStorage.setItem('introPlayed','yes');
-
-    // mali fade-out pa ukloni overlay
-    requestAnimationFrame(function(){
-      wrap.style.opacity = '0';
-      setTimeout(function(){
-        if (wrap && wrap.parentNode) wrap.parentNode.removeChild(wrap);
-      }, 380);
-    });
-  }, { passive:true });
-
-  // (neobavezno) safety net: ako nešto pođe po zlu, makni overlay nakon 20s
-  setTimeout(function(){
-    if (!sessionStorage.getItem('introPlayed')) {
+    window.addEventListener('message', function(ev){
+      if (!ev || !ev.data || ev.data.type !== 'INTRO_DONE') return;
       sessionStorage.setItem('introPlayed','yes');
-      try { wrap.style.opacity = '0'; } catch(e){}
-      setTimeout(function(){
-        if (wrap && wrap.parentNode) wrap.parentNode.removeChild(wrap);
-      }, 380);
-    }
-  }, 20000);
-})();
-</script>
+      requestAnimationFrame(function(){
+        wrap.style.opacity = '0';
+        setTimeout(function(){
+          if (wrap && wrap.parentNode) wrap.parentNode.removeChild(wrap);
+        }, 380);
+      });
+    }, { passive:true });
 
+    setTimeout(function(){
+      if (!sessionStorage.getItem('introPlayed')) {
+        sessionStorage.setItem('introPlayed','yes');
+        try { wrap.style.opacity = '0'; } catch(e){}
+        setTimeout(function(){
+          if (wrap && wrap.parentNode) wrap.parentNode.removeChild(wrap);
+        }, 380);
+      }
+    }, 20000);
+  })();
+  </script>
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/global.css" />
+  <!-- Preload CSS da ubrzamo LCP -->
+  <link rel="preload" href="/css/global.css" as="style">
+  <link rel="stylesheet" href="/css/global.css">
 </head>
 <body>
   <header class="site-header">
@@ -154,7 +134,6 @@
       </nav>
     </div>
   </header>
-  
 
   <main>
     <!-- HERO -->
@@ -247,7 +226,11 @@
           <p>On <a id="substackLink" target="_blank" rel="noopener">Substack</a> you’ll find my latest market notes; on <a id="xLink2" target="_blank" rel="noopener">X</a> I share quick takes and charts.</p>
         </div>
         <div class="about-media">
-          <img src="assets/img/me.png" alt="Photo of the author" />
+          <!-- NOTE: postavi stvarne dimenzije slike ako su drugačije -->
+          <img src="assets/img/me.png"
+               alt="Photo of the author"
+               width="522" height="1310"
+               loading="lazy" decoding="async" />
         </div>
       </div>
     </section>
@@ -259,31 +242,31 @@
           <h2>Contact</h2>
         </div>
 
-       <form class="contact-form" id="contactForm" name="contact"
-      method="POST" action="/thanks.html"
-      data-netlify="true" netlify-honeypot="bot-field">
-  <input type="hidden" name="form-name" value="contact">
-  <p aria-hidden="true" style="position:absolute;left:-9999px;">
-    <label>Don’t fill this out: <input name="bot-field"></label>
-  </p>
+        <form class="contact-form" id="contactForm" name="contact"
+              method="POST" action="/thanks.html"
+              data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact">
+          <p aria-hidden="true" style="position:absolute;left:-9999px;">
+            <label>Don’t fill this out: <input name="bot-field"></label>
+          </p>
 
-  <div class="grid form-grid">
-    <label>
-      <span>Name</span>
-      <input type="text" name="name" placeholder="Your name" required />
-    </label>
-    <label>
-      <span>Email</span>
-      <input type="email" name="email" placeholder="your@email.com" required />
-    </label>
-  </div>
-  <label>
-    <span>Message</span>
-    <textarea name="message" rows="6" placeholder="How can I help?" required></textarea>
-  </label>
-  <button class="btn-primary" type="submit">Send</button>
-  <p class="muted tiny" id="formMsg" role="status" aria-live="polite"></p>
-</form>
+          <div class="grid form-grid">
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="your@email.com" required />
+            </label>
+          </div>
+          <label>
+            <span>Message</span>
+            <textarea name="message" rows="6" placeholder="How can I help?" required></textarea>
+          </label>
+          <button class="btn-primary" type="submit">Send</button>
+          <p class="muted tiny" id="formMsg" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>
@@ -314,70 +297,16 @@
   </script>
 
   <!-- Glavni skript (ESM je defer po defaultu) -->
-  <script src="js/app.js" type="module"></script>
-
-  <!-- ===== Disclaimer modal (HTML) ===== -->
-  <div id="disclaimerModal" class="disclaimer-backdrop" role="dialog"
-       aria-modal="true" aria-labelledby="discTitle" aria-describedby="discBody" hidden>
-    <div class="disclaimer-dialog">
-
-      <!-- Header + language toggle -->
-      <div class="disc-head">
-        <h2 id="discTitle" data-i18n="title">Disclaimer</h2>
-        <div class="disc-lang" role="group" aria-label="Language">
-          <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
-          <button type="button" class="lang-btn" data-lang="hr" aria-pressed="false">HR</button>
-        </div>
-      </div>
-
-      <!-- Body (EN default) -->
-      <div id="discBody" class="disclaimer-content">
-        <p data-i18n="p1">
-          <strong>Educational only — not advice.</strong>
-          Financial Pulse provides general market education and commentary. Nothing here is
-          financial, investment, tax, accounting, or legal advice, nor a recommendation to buy, sell,
-          or hold any security or digital asset. Content is not tailored to your circumstances and must
-          not be relied upon as a personal recommendation.
-        </p>
-        <p data-i18n="p2">
-          <strong>Risks.</strong>
-          Trading and investing in securities and cryptocurrencies involve substantial risk,
-          including possible loss of principal. Past performance is not indicative of future results.
-          Always do your own research and use your own judgment.
-        </p>
-        <p data-i18n="p3">
-          <strong>Disclosures.</strong>
-          The author may share personal trades/actions for illustration; these reflect the author’s own
-          portfolio, risk tolerance, and knowledge and should not be copied. The author is not a licensed
-          financial adviser or registered investment adviser. No adviser–client relationship is created.
-        </p>
-      </div>
-
-      <!-- Acknowledge -->
-      <label class="disc-check" for="discAgreeChk">
-        <input type="checkbox" id="discAgreeChk" />
-        <span data-i18n="ackLabel">I have read and understand this disclaimer.</span>
-      </label>
-
-      <!-- Actions -->
-      <div class="disc-actions">
-        <button class="btn-primary" id="discAcceptBtn" disabled>
-          <span data-i18n="accept">Accept &amp; Continue</span>
-        </button>
-        <a class="btn-secondary" href="disclaimer.html" target="_blank" rel="noopener">
-          <span data-i18n="readFull">Read full disclaimer</span>
-        </a>
-      </div>
-    </div>
-  </div>
+  <script src="/js/app.js" type="module"></script>
 
   <!-- Cookies config + loader -->
   <script>
     window.fpCookiesConfig = { policyUrl: 'legal/privacy.html', ttlDays: 180 };
   </script>
-  <script src="js/cookies.js"></script>
+  <script src="/js/cookies.js" defer></script>
 </body>
 </html>
+
 
 
 
