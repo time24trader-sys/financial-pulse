@@ -1,0 +1,1 @@
+Financial Pulse is an independent crypto & equity research and content platform focusing on derivatives, market structure, and institutional trading narratives. It includes published insights, product analyses, and frameworks designed for professional audiences.
